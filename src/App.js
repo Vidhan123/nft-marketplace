@@ -41,6 +41,8 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/detail" element={<NFTDetail />} />
+          {/* <Route path="/account" element={<Account />} /> */}
+          {/* <Route path="/extra" element={<Extra />} /> */}
           <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
