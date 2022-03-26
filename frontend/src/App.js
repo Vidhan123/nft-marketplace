@@ -52,7 +52,7 @@ function App() {
     setMusicNFT(contract);
 
     // Get All NFTs
-    let res2,res3 = await getAllNFTs(musicNFT);
+    let res2,res3 = await getAllNFTs(contract);
     setAllNfts(res2)
     setNftCount(res3)
   }
@@ -95,18 +95,7 @@ function App() {
   
   const createNFTFromApp=async(name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d)=>{
     const res2 = await createNFT(musicNFT,name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d,account);
-    if(res2=="confirmed"){
-      console.log("success")
-    }
-    else if(res2=="audioUsed"){
-      console.log("audioUsed")
-    }
-    else if(res2=="imageUsed"){
-      console.log("imageUsed")
-    }
-    else{
-      console.log("nameUsed")
-    }
+   console.log(res2)
   }
   const toggleForSaleFromApp=async(tokenID)=>{
       const res2=await toggleForSale(musicNFT,tokenID,account)
