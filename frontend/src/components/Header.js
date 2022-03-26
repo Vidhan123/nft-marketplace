@@ -14,12 +14,12 @@ const Header = ({loadWeb3, account}) => {
 
     return (
         <div id="header">
-        <Link to='/' id='logo'>NFT Room</Link>
+        <Link to='/' id='logo'>DeMusic</Link>
 
         <div id="link-containers">
-          <Link to="/explore">Explore</Link>
-          <Link to="/stats">Stats</Link>
-          <Link to="/create">Create</Link>
+          <Link to="/explore" style={{ textDecoration: 'none' }}>Explore</Link>
+          <Link to="/stats" style={{ textDecoration: 'none' }}>Stats</Link>
+          <Link to="/create" style={{ textDecoration: 'none' }}>Create</Link>
 
           <Button
               onClick={() => handleWallet()}
