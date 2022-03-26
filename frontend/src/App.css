@@ -1,0 +1,21 @@
+*{
+  margin:0;
+  padding:0;
+  
+}
+
+.App{
+  margin:0;
+  padding:0;
+}
+
+*::-webkit-scrollbar{
+  display:none;
+}
+
+.color-border {
+  border: transparent 3px solid !important; 
+  border-radius: 0 !important;
+  border-image: linear-gradient(to right, rgb(46, 186, 198), rgb(182, 80, 158), rgb(46, 186, 198), rgb(182, 80, 158)) !important; border-image-slice: 1 !important;
+  overflow: hidden !important;
+}
