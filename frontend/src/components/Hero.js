@@ -21,7 +21,7 @@ const Hero = ({ loadWeb3, account }) => {
 
       <h1 id="header-text-first"> Music </h1>
       <h1 id="header-text-second"> NFT Marketplace</h1>
-      <h5 id="header-subtext">Collect, Own and Trade your Favourite Music</h5>
+      <h5 id="header-subtext">Collect, Trade and Own your Favourite Music</h5>
 
       <div id="hero-buttons">
         <button id="explore" onClick={goExplore}>
