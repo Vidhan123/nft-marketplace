@@ -4,16 +4,15 @@ import Web3 from 'web3';
 import ipfsClient from 'ipfs-http-client';
 
 import Home from "./pages/Home";
-import Create from "./pages/Create";
+import CreateNFT from "./pages/CreateNFT";
 import CreateUser from "./pages/CreateUser";
-import Explore from "./pages/Explore2";
+import Explore2 from "./pages/Explore2";
 import NFTDetail from "./pages/NFTDetail";
 import DigiMusicabi from "./abis/DigiMusicabi.json";
 import useAPI from './hooks/useAPI';
 import useNFT from './hooks/useNFT';
 import ipfs from "./hooks/ipfs";
-
-
+import Header from "./components/Header";
 
 function App() {
 
@@ -23,7 +22,6 @@ function App() {
   const [allNfts, setAllNfts] = useState([]);
 
 
-  const [metamaskConnected,setMetamaskConnected]=useState(false)
   const [accountBalance,setAccountBalance]=useState(0);
   const [loading,setLoading]=useState(false);
   const [nftCount,setNftCount]=useState(0);
@@ -35,14 +33,7 @@ function App() {
  
   const fetchAccount = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
-    if (accounts.length === 0) {
-      setMetamaskConnected(false) 
-    }
-    else{
-      setAccount(accounts[0]);
-      setMetamaskConnected(true) 
-    }
-   
+    setAccount(accounts[0]); 
   }
 
   const loadDetails = async () => {
@@ -66,13 +57,10 @@ function App() {
     setNftCount(res3)
   }
   
-  
   const loadAllUsers = async () => {
     const res2 = await getAllUsers();
     setAllUsers(res2);
-
-
-}
+  }
 
 
   const loadWeb3 = async () => {
@@ -98,16 +86,13 @@ function App() {
 
   useEffect(() => {
     const Load = async () => {
-      
       await loadWeb3();
       await loadBlockchainData();
       await loadAllUsers();
-      
-      
     }
     Load()
   }, [])
-console.log(musicNFT)
+  
   const createNFTFromApp=async(name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d)=>{
     const res2 = await createNFT(musicNFT,name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d,account);
    console.log(res2)
@@ -134,21 +119,42 @@ console.log(musicNFT)
     }
   }
 
-  const createUserFromApp=async(details)=>{
+  const createUserFromApp = async(details)=>{
     const res=await updateUser(account,details)
     console.log(res)
     if(res){
       loadDetails();
     }
   }
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/create" element={<Create />} />
-          <Route path="/createUser" element={<CreateUser />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/detail" element={<NFTDetail />} />
+          <Route path="/create" element={
+            <CreateNFT 
+              loadWeb3={fetchAccount}
+              account={account}
+            />} 
+          />
+          <Route path="/editProfile" element={
+            <CreateUser
+              loadWeb3={fetchAccount}
+              account={account}
+            />
+          } />
+          <Route path="/explore" element={
+            <Explore2 
+              loadWeb3={fetchAccount}
+              account={account}
+            />
+          } />
+          <Route path="/detail" element={
+            <NFTDetail 
+              loadWeb3={fetchAccount}
+              account={account}
+            />
+          } />
           {/* <Route path="/profile" element={<Profile />} /> */}
           {/* <Route path="/stats" element={<Stats />} /> */}
           <Route path="/" element={ 
