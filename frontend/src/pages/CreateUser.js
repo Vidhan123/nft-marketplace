@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '../components/base/Card';
 import Button from '../components/base/Button';
-import TextInput from '../components/base/TextInput';
+import TextInput from '../components/base/TextInput2';
 import AvatarImageCropper from 'react-avatar-image-cropper';
 import { Container, Grid, TextField, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
@@ -89,7 +89,7 @@ const CreateUser = ({ createUserFromApp }) => {
                         <Grid item md={8} style={{ padding: '30px' }}>
                             <form className="form" noValidate onSubmit={handleSubmit}>
                                 <Typography variant='h6' style={{ color: 'white', textAlign: 'left', marginLeft: '10px', marginTop: '20px' }}>Name</Typography>
-                                <TextInput width="100%" height="30px" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                                <TextInput width="100%" height="30px" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value);console.log("here",e.target.value)} }/>
                                 <Typography variant='h6' style={{ color: 'white', textAlign: 'left', marginLeft: '10px', marginTop: '20px' }}>Email id</Typography>
                                 <TextInput width="100%" height="30px" placeholder="Email id" value={email} onChange={(e) => setEmail(e.target.value)} />
                                 <Typography variant='h6' style={{ color: 'white', textAlign: 'left', marginLeft: '10px', marginTop: '20px' }}>Bio</Typography>

@@ -6,7 +6,7 @@ import ipfsClient from 'ipfs-http-client';
 import Home from "./pages/Home";
 import Create from "./pages/Create";
 import CreateUser from "./pages/CreateUser";
-import Explore from "./pages/Explore";
+import Explore from "./pages/Explore2";
 import NFTDetail from "./pages/NFTDetail";
 import DigiMusicabi from "./abis/DigiMusicabi.json";
 import useAPI from './hooks/useAPI';
@@ -61,7 +61,7 @@ function App() {
     setMusicNFT(contract);
 
     // Get All NFTs
-    let res2,res3 = await getAllNFTs(musicNFT);
+    let res2,res3 = await getAllNFTs(contract);
     setAllNfts(res2)
     setNftCount(res3)
   }
@@ -110,18 +110,7 @@ function App() {
 console.log(musicNFT)
   const createNFTFromApp=async(name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d)=>{
     const res2 = await createNFT(musicNFT,name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d,account);
-    if(res2=="confirmed"){
-      console.log("success")
-    }
-    else if(res2=="audioUsed"){
-      console.log("audioUsed")
-    }
-    else if(res2=="imageUsed"){
-      console.log("imageUsed")
-    }
-    else{
-      console.log("nameUsed")
-    }
+   console.log(res2)
   }
   const toggleForSaleFromApp=async(tokenID)=>{
       const res2=await toggleForSale(musicNFT,tokenID,account)
@@ -156,18 +145,18 @@ console.log(musicNFT)
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/create" element={<Create />} />
+          <Route path="/create" element={<Create />} />
           <Route path="/createUser" element={<CreateUser />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/detail" element={<NFTDetail />} /> */}
+          <Route path="/detail" element={<NFTDetail />} />
           {/* <Route path="/profile" element={<Profile />} /> */}
           {/* <Route path="/stats" element={<Stats />} /> */}
           <Route path="/" element={ 
-            // <Home
-            //   loadWeb3={fetchAccount}
-            //   account={account}
-            // />
-            <CreateUser createUserFromApp={createUserFromApp}/>
+            <Home
+              loadWeb3={fetchAccount}
+              account={account}
+            />
+            // <CreateUser createUserFromApp={createUserFromApp}/>
           } />
         </Routes>
       </BrowserRouter>
