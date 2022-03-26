@@ -11,4 +11,4 @@ const itemRouter = express.Router();
 itemRouter.get('/:itemId', asyncHandler(getItem));
 itemRouter.put('/:itemId', asyncHandler(updateItem));
 
-module.exports = userRouter;
+module.exports = itemRouter;
