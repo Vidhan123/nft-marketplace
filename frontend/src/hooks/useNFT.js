@@ -1,9 +1,36 @@
-import React, { useState } from 'react';
-
 function useNFT() {
 
-  return {
+  const getAllNFTs = async () => {
 
+  }
+
+  const createNFT = async () => {
+
+  }
+
+  const buyNFT = async () => {
+
+  }
+
+  const toggleForSale = async () => {
+
+  }
+
+  const changeTokenPrice = async () => {
+
+  }
+
+  const getTokenMetaData = async () => {
+
+  }
+
+  return {
+    getAllNFTs,
+    createNFT,
+    buyNFT,
+    toggleForSale,
+    changeTokenPrice,
+    getTokenMetaData
   }
 }
 
