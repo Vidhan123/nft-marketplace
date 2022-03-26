@@ -5,34 +5,58 @@ const URL = 'http://localhost:8000/api/v1'
 function useAPI() {
 
   const getUser = async (walletAddress) => {
-    
-    const res = axios.get(`${URL}/user/${walletAddress}`)
+    try {
+      const res = axios.get(`${URL}/user/${walletAddress}`)
 
-    return res.data;
+      return res.data;
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
   const getAllUsers = async () => {
-    const res = axios.get(`${URL}/user/all`)
+    try {
+      const res = axios.get(`${URL}/user/all`)
 
-    return res.data;
+      return res.data;
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
   const updateUser = async (walletAddress, data) => {
-    const res = await axios.put(`${URL}/user/${walletAddress}`, data);
+    try {
+      const res = await axios.put(`${URL}/user/${walletAddress}`, data);
     
-    return res.data;
+      return res.data;
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
   const getItem = async (itemId) => {
-    const res = axios.get(`${URL}/item/${itemId}`)
+    try {
+      const res = axios.get(`${URL}/item/${itemId}`)
 
-    return res.data;
+      return res.data;
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
   const updateItem = async (itemId, data) => {
-    const res = await axios.put(`${URL}/item/${itemId}`, data);
+    try {
+      const res = await axios.put(`${URL}/item/${itemId}`, data);
     
-    return res.data;
+      return res.data;
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
   return {
