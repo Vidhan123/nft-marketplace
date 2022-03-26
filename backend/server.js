@@ -20,6 +20,7 @@ app.use(express.json());
 
 // Route files
 const userRouter = require('./routes/userRouter');
+const itemRouter = require('./routes/itemRouter');
 
 // Home
 app.get('/', (req, res) => {
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 
 // Mount routers
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/item', itemRouter);
 
 // Handling invalid routes
 app.get('*', (req, res) => {
