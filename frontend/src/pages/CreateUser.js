@@ -16,7 +16,7 @@ const styles = makeStyles(() => ({
     },
 }))
 
-const CreateUser = () => {
+const CreateUser = ({ createUserFromApp }) => {
     const classes = styles()
     const [src, setSrc] = React.useState("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX");
     const [clickedChange, setClickedChange] = React.useState(false);
@@ -28,6 +28,7 @@ const CreateUser = () => {
         e.preventDefault();
         const data = { 'profile': src, 'name': name, 'email': email, 'bio': bio }
         console.log(data)
+        createUserFromApp(data)
     }
 
     const apply = (file) => {
