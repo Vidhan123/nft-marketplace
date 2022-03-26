@@ -155,7 +155,10 @@ function App() {
               account={account}
             />
           } />
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/profile" element={
+            <>Profile Page</>
+            // <Profile />
+          } />
           {/* <Route path="/stats" element={<Stats />} /> */}
           <Route path="/" element={ 
             <Home
