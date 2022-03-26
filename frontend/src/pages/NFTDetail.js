@@ -12,7 +12,7 @@ import { useMobile } from "../hooks/isMobile";
 import { hotDropsData } from "../constants/MockupData";
 import { useARStatus } from "../hooks/isARStatus";
 
-const NFTDetail = () => {
+const NFTDetail = ({ loadWeb3, account }) => {
   const isMobile = useMobile();
 
   const [colors, setColors] = useState([]);
@@ -37,7 +37,10 @@ const NFTDetail = () => {
 
   return (
     <div>
-      <Header />
+      <Header 
+        loadWeb3={loadWeb3}
+        account={account}
+      />
       <div id="nft-detail-card-wrapper">
         <Card
           width={isMobile ? "100%" : "65vw"}

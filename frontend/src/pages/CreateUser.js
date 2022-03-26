@@ -6,6 +6,7 @@ import AvatarImageCropper from 'react-avatar-image-cropper';
 import { Container, Grid, TextField, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { Colors } from '../constants/Colors';
+import Header from "../components/Header";
 
 const styles = makeStyles(() => ({
     card: {
@@ -16,7 +17,7 @@ const styles = makeStyles(() => ({
     },
 }))
 
-const CreateUser = ({ createUserFromApp }) => {
+const CreateUser = ({ createUserFromApp, loadWeb3, account }) => {
     const classes = styles()
     const [src, setSrc] = React.useState("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX");
     const [clickedChange, setClickedChange] = React.useState(false);
@@ -39,6 +40,10 @@ const CreateUser = ({ createUserFromApp }) => {
 
     return (
         <Container style={{ display: 'flex', justifyContent: 'center' }} >
+            <Header 
+                loadWeb3={loadWeb3}
+                account={account}
+            />
             <Card width='75%' height='75%' child={
                 <>
                     <Typography variant='h4' style={{ color: 'white', margin: '20px' }}>Edit Profile</Typography>
