@@ -18,7 +18,7 @@ function useAPI() {
   const getAllUsers = async () => {
     try {
       const res = axios.get(`${URL}/user/all`)
-
+      console.log(res);
       return res.data;
     }
     catch(err) {

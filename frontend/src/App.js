@@ -140,7 +140,7 @@ const loadAllNFTs=async()=>{
       loadDetails();
     }
   }
-
+console.log("allUsers",allUsers)
   return (
     <>
       <BrowserRouter>

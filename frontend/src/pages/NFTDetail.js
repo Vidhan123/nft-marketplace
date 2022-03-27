@@ -12,7 +12,7 @@ import { useMobile } from "../hooks/isMobile";
 import { hotDropsData } from "../constants/MockupData";
 import { useARStatus } from "../hooks/isARStatus";
 
-const NFTDetail = ({ loadWeb3, account }) => {
+const NFTDetail = ({ loadWeb3, account,buyNFTFromApp }) => {
   const isMobile = useMobile();
 
   const [colors, setColors] = useState([]);
@@ -34,6 +34,16 @@ const NFTDetail = ({ loadWeb3, account }) => {
   }, [state]);
 
   const isARSupport = useARStatus(state.item.src);
+  const dummy = {
+    "Name": "Ta Ta Thaiya",
+    "Owner": "Rishi Lakhani",
+    "Description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "Transfers": "4",
+    "Category": "Folk",
+    "price":"0.5",
+    "like":"100",
+    "src":"hii",
+}
 
   return (
     <div>
@@ -51,14 +61,21 @@ const NFTDetail = ({ loadWeb3, account }) => {
             <div id="detail-content">
              {isARSupport ? <model-viewer ar-scale="auto" ar ar-modes="webxr scene-viewer quick-look" id="arDetail" loading="eager" camera-controls auto-rotate src={state.item.src} > </model-viewer> 
              : <> <ColorExtractor getColors={getColors}>
-                <img id="detail-image" src={state.item.src} />
+                {/* <img id="detail-image" src={state.item.src} /> */}
+                {/* <img id="detail-image" src={dummy.src} /> */}
               </ColorExtractor></>}
 
               <div id="detail-info" style={{}}>
-                <div id='detail-info-container'>
+                {/* <div id='detail-info-container'>
                   <p id="collection"> {state.item.name} </p>
                   <p id="name"> {state.item.name} </p>
                   <p id="description" > {state.item.description} </p>
+
+                </div> */}
+                <div id='detail-info-container'>
+                  <p id="collection"> {dummy.name} </p>
+                  <p id="name"> {dummy.name} </p>
+                  <p id="description" > {dummy.description} </p>
 
                 </div>
 
@@ -66,10 +83,11 @@ const NFTDetail = ({ loadWeb3, account }) => {
                   <Button
                     width={isMobile ? "70%" : "70%"}
                     height="50px"
+                    onClick={buyNFTFromApp(dummy.tokenID,dummy.price)}
                     child={
                       <div id="button-child">
                         <FaEthereum size="28px" />
-                        <p id="price">1254</p>
+                        <p id="price">Buy for {dummy.price}</p>
                       </div>
                     }
                   ></Button>
@@ -91,7 +109,7 @@ const NFTDetail = ({ loadWeb3, account }) => {
                         />
                       )}
                     </button>
-                    <p className="like-count">123</p>
+                    <p className="like-count">{dummy.like}</p>
                   </div>
                 </div>
               </div>

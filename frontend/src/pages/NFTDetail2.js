@@ -33,7 +33,9 @@ const NFTDetail2 = () => {
         "Owner": "Rishi Lakhani",
         "Description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "Transfers": "4",
-        "Category": "Folk"
+        "Category": "Folk",
+        "price":"0.5",
+        "like":"100",
     }
 
     const isARSupport = useARStatus(state.item.src);
@@ -77,8 +79,9 @@ const NFTDetail2 = () => {
                                 <Button
                                     width={isMobile ? "70%" : "100%"}
                                     height="50px"
+                                    onClick={buyNFTFromApp(dummy.tokenID,dummy.price)}
                                     child={
-                                        <Typography variant='h6' color={Colors.buttons.primary}><FaEthereum size="20px" /> 1254 </Typography>
+                                        <Typography variant='h6' color={Colors.buttons.primary}><FaEthereum size="20px" /> {dummy.price}</Typography>
                                     }
                                 />
                                 </Grid>
@@ -101,7 +104,7 @@ const NFTDetail2 = () => {
                                             />
                                         )}
                                     </button>
-                                    <Typography variant='body1' style={{ color: 'white' }}>123</Typography>
+                                    <Typography variant='body1' style={{ color: 'white' }}>{dummy.like}</Typography>
                                 </div>
                                 </Grid>
                             </Grid>

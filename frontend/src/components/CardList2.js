@@ -14,7 +14,7 @@ function TabPanel(props) {
   let navigate = useNavigate();
 
   let filteredList = index !== 'All' ? (
-     data.filter((item) => {
+     data && data.filter((item) => {
       return item.type === index
     })) : (
     data
