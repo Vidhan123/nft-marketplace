@@ -23,26 +23,26 @@ function App() {
   const [allNfts, setAllNfts] = useState([]);
 
 
-  const [metamaskConnected,setMetamaskConnected]=useState(false)
-  const [accountBalance,setAccountBalance]=useState(0);
-  const [loading,setLoading]=useState(false);
-  const [nftCount,setNftCount]=useState(0);
+  const [metamaskConnected, setMetamaskConnected] = useState(false)
+  const [accountBalance, setAccountBalance] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [nftCount, setNftCount] = useState(0);
 
-  const [allUsers,setAllUsers]=useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
-  const { getUser, getAllUsers,updateUser } = useAPI();
-  const { getAllNFTs,createNFT,buyNFT,toggleForSale,changeTokenPrice,getTokenMetaData } = useNFT();
- 
+  const { getUser, getAllUsers, updateUser } = useAPI();
+  const { getAllNFTs, createNFT, buyNFT, toggleForSale, changeTokenPrice, getTokenMetaData } = useNFT();
+
   const fetchAccount = async () => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     if (accounts.length === 0) {
-      setMetamaskConnected(false) 
+      setMetamaskConnected(false)
     }
-    else{
+    else {
       setAccount(accounts[0]);
-      setMetamaskConnected(true) 
+      setMetamaskConnected(true)
     }
-   
+
   }
 
   const loadDetails = async () => {
@@ -54,31 +54,31 @@ function App() {
   const loadBlockchainData = async () => {
     const web3 = window.web3;
 
-    const contractAddress ="0x0ED91283C04C1c784e71F88B837AaCB771BEdc9c";
+    const contractAddress = "0x0ED91283C04C1c784e71F88B837AaCB771BEdc9c";
     console.log(DigiMusicabi)
     const contract = new web3.eth.Contract(DigiMusicabi, contractAddress);
     console.log(contract)
     setMusicNFT(contract);
 
     // Get All NFTs
-    let res2,res3 = await getAllNFTs(musicNFT);
+    let res2, res3 = await getAllNFTs(musicNFT);
     setAllNfts(res2)
     setNftCount(res3)
   }
-  
-  
+
+
   const loadAllUsers = async () => {
     const res2 = await getAllUsers();
     setAllUsers(res2);
 
 
-}
+  }
 
 
   const loadWeb3 = async () => {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
-    
+
       window.ethereum.on('accountsChanged', function () {
         // load details
         loadDetails();
@@ -98,57 +98,57 @@ function App() {
 
   useEffect(() => {
     const Load = async () => {
-      
+
       await loadWeb3();
       await loadBlockchainData();
       await loadAllUsers();
-      
-      
+
+
     }
     Load()
   }, [])
-console.log(musicNFT)
-  const createNFTFromApp=async(name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d)=>{
-    const res2 = await createNFT(musicNFT,name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d,account);
-    if(res2=="confirmed"){
+  console.log(musicNFT)
+  const createNFTFromApp = async (name, description, bufferImage, bufferMusic, tokenPrice, finalbuffer, categories, is3d) => {
+    const res2 = await createNFT(musicNFT, name, description, bufferImage, bufferMusic, tokenPrice, finalbuffer, categories, is3d, account);
+    if (res2 == "confirmed") {
       console.log("success")
     }
-    else if(res2=="audioUsed"){
+    else if (res2 == "audioUsed") {
       console.log("audioUsed")
     }
-    else if(res2=="imageUsed"){
+    else if (res2 == "imageUsed") {
       console.log("imageUsed")
     }
-    else{
+    else {
       console.log("nameUsed")
     }
   }
-  const toggleForSaleFromApp=async(tokenID)=>{
-      const res2=await toggleForSale(musicNFT,tokenID,account)
-      if(res2=="confirmed"){
-        console.log("status changed")
-      }
+  const toggleForSaleFromApp = async (tokenID) => {
+    const res2 = await toggleForSale(musicNFT, tokenID, account)
+    if (res2 == "confirmed") {
+      console.log("status changed")
+    }
   }
 
-  const changeTokenPriceFromApp=async(tokenID,newPrice)=>{
+  const changeTokenPriceFromApp = async (tokenID, newPrice) => {
     const newTokenPrice = window.web3.utils.toWei(newPrice, "Ether");
-    const res2=await changeTokenPrice(musicNFT,tokenID,newTokenPrice,account)
-    if(res2=="confirmed"){
+    const res2 = await changeTokenPrice(musicNFT, tokenID, newTokenPrice, account)
+    if (res2 == "confirmed") {
       console.log("price changed")
     }
   }
 
-  const buyNFTFromApp=async(tokenID,price)=>{
-    const res2=await buyNFT(musicNFT,tokenID,price,account)
-    if(res2=="confirmed"){
+  const buyNFTFromApp = async (tokenID, price) => {
+    const res2 = await buyNFT(musicNFT, tokenID, price, account)
+    if (res2 == "confirmed") {
       console.log("price changed")
     }
   }
 
-  const createUserFromApp=async(details)=>{
-    const res=await updateUser(account,details)
+  const createUserFromApp = async (details) => {
+    const res = await updateUser(account, details)
     console.log(res)
-    if(res){
+    if (res) {
       loadDetails();
     }
   }
@@ -156,22 +156,22 @@ console.log(musicNFT)
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/create" element={<Create />} />
+          <Route path="/create" element={<Create />} />
           <Route path="/createUser" element={<CreateUser />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/detail" element={<NFTDetail />} /> */}
-          {/* <Route path="/profile" element={<Profile />} /> */}
-          {/* <Route path="/stats" element={<Stats />} /> */}
-          <Route path="/" element={ 
-            // <Home
-            //   loadWeb3={fetchAccount}
-            //   account={account}
-            // />
-            <CreateUser createUserFromApp={createUserFromApp}/>
+          <Route path="/detail" element={<NFTDetail />} />
+          {/* <Route path="/profile" element={<Profile />} />
+          <Route path="/stats" element={<Stats />} /> */}
+          <Route path="/" element={
+            <Home
+              loadWeb3={fetchAccount}
+              account={account}
+            />
+            // <CreateUser createUserFromApp={createUserFromApp}/>
           } />
         </Routes>
       </BrowserRouter>
-    </>    
+    </>
   );
 }
 
