@@ -2,7 +2,7 @@ import React from 'react'
 import AvatarImageCropper from 'react-avatar-image-cropper';
 import Card from '../components/base/Card';
 import Button from '../components/base/Button';
-import TextInput from '../components/base/TextInput';
+import TextInput from '../components/base/TextInput2';
 import { Container, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { Colors } from '../constants/Colors';
@@ -18,7 +18,7 @@ const styles = makeStyles(() => ({
     },
 }))
 
-const CreateNFT = ({ loadWeb3, account }) => {
+const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
     const classes = styles()
     const [src, setSrc] = React.useState("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX");
     const [music, setMusic] = React.useState(null)
@@ -33,14 +33,37 @@ const CreateNFT = ({ loadWeb3, account }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = { 'profile': src, 'name': name, 'price': price, 'description': description, 'music': music }
+        
         console.log(data)
+        createNFTFromApp(name,description,src,music,price,category,is3d)
     }
 
     const apply = (file) => {
-        var src = window.URL.createObjectURL(file);
-        setSrc(src);
+        // var src = window.URL.createObjectURL(file);
+        // setSrc(src);
+        setSrc(file);
         setClickedChange(false)
     }
+    const captureAudio=(event)=> {
+        event.preventDefault()
+        
+        const files = event.target.files[0]
+        const reader = new FileReader()
+        reader.readAsArrayBuffer(files)
+        reader.onloadend = () => {
+            setMusic(Buffer(reader.result))
+    }
+// }
+//     const captureFile=(event)=> {
+//         event.preventDefault()
+        
+//         const files = event.target.files[0]
+//         const reader = new FileReader()
+//         reader.readAsArrayBuffer(files)
+//         reader.onloadend = () => {
+//             setFinalBuffer(Buffer(reader.result))
+//     }
+}
 
     return (
         <Container style={{ display: 'flex', justifyContent: 'center', margin: '50px auto' }} >
@@ -99,7 +122,7 @@ const CreateNFT = ({ loadWeb3, account }) => {
                                 Remove Image
                             </Button>
                             <div style={{ backgroundColor: 'white', marginTop: '50px' }}>
-                                <input type="file" id="finput" onChange={(e) => setMusic(window.URL.createObjectURL(e.target.files[0]))} />
+                                <input type="file" id="finput" onChange={captureAudio} />
                             </div>
                         </Grid>
                         <Grid item xs={7}>
