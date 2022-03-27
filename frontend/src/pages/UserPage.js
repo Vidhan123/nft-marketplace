@@ -7,7 +7,7 @@ const UserPage = ({ loadWeb3, account }) => {
     const dummy = {
         "Name": "Unnamed",
         "Profile": "https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX",
-        "Creations": '1',
+        "Creations": '5',
         "Followers": '0'
     }
     return (
