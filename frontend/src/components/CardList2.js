@@ -65,7 +65,6 @@ const CardList = ({ list, type = "horizontal" }) => {
   };
 
   let tags = ['All', 'Pop', 'Classical', 'Hip-Hop and Rap', 'EDM', 'Country', 'Folk']
-console.log(list)
   return (
     <div className={classes.root}>
       <AppBar position="static">

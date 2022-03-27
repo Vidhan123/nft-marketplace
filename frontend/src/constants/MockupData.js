@@ -2,6 +2,11 @@
 import AntiqueCamera from '../assets/models/AntiqueCamera.glb';
 import BarramundiFish from '../assets/models/BarramundiFish.glb';
 import Avocado from '../assets/models/Avocado.glb';
+import headfones from '../assets/models/headfones.glb';
+import caroler from '../assets/models/caroler.glb';
+import roadsidestereo from '../assets/models/roadside stereo.glb';
+import stereogun from '../assets/models/stereo gun.glb';
+// import instrument from '../assets/models/instrument.png';
 
 export const exploreList = [
   {
@@ -9,7 +14,7 @@ export const exploreList = [
     type: 'Folk',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    src: AntiqueCamera,
+    src: stereogun,
   },
   {
     name: "Test NFT #1",
