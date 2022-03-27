@@ -64,11 +64,11 @@ function Activity(props) {
             <ListItem>
               <ListItemText
                 disableTypography
-                primary={<Typography variant="h6" style={{cursor: 'default'}}>Number of Transactions: {transactions.length}</Typography>}
+                primary={<Typography variant="h6" style={{cursor: 'default', color: "#fff"}}>Number of Transactions: {transactions.length}</Typography>}
               />
                 <ListItemSecondaryAction>
                   <Tooltip title="CSV Export" aria-label="download">
-                    <IconButton edge="end" style={{border:'none',outline:'none'}}
+                    <IconButton edge="end" style={{border:'none',outline:'none',color: "#fff"}}
                       onClick={() => downloadCSV(transactions)}
                     >
                       <GetAppOutlined fontSize="large" />
