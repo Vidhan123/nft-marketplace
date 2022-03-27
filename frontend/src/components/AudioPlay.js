@@ -1,15 +1,14 @@
-import {  ThemeProvider } from '@material-ui/core';
 import AudioPlayer from 'material-ui-audio-player';
-import { createTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-const theme = createTheme({});
- 
+
 const useStyles = makeStyles((theme) => {
   return {
     root: {
       [theme.breakpoints.down('sm')]: {
         width: '100%',
       },
+      borderRadius: '15px',
+      margin: 'auto'
     },
     loopIcon: {
       color: '#3f51b5',
@@ -58,17 +57,14 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
- 
-const AudioPlay=()=>{
-    return (
-    <ThemeProvider theme={theme}>
-  <AudioPlayer
-    width="500px"
-    useStyles={useStyles}
-    src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-    loop={true}
-  />
-</ThemeProvider>
-    );
+
+const AudioPlay = () => {
+  return (
+      <AudioPlayer
+        useStyles={useStyles}
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        loop={true}
+      />
+  );
 };
 export default AudioPlay;
