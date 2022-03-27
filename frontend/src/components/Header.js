@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { exploreList } from "../constants/MockupData";
 import { Button, Avatar, TextField } from '@material-ui/core';
 import {  makeStyles } from '@material-ui/core/styles';
@@ -33,7 +33,8 @@ notBlurredCard:{
   // [theme.breakpoints.down('lg')]: {
   //   width: '66%',
   // },
-  width:"50%"
+  minWidth: "400px",
+  maxWidth:"50%"
 },
 }));
 
@@ -42,6 +43,8 @@ const Header = ({loadWeb3, account}) => {
   const [userSuggestions,setUserSuggestions]=useState([]);
   const [tokenSuggestions,setTokenSuggestions]=useState([]);
   const [text,setText]=useState(null);
+
+  let navigate = useNavigate();
 
   const searchData=[
     {
@@ -104,21 +107,22 @@ const Header = ({loadWeb3, account}) => {
       // searchTermfromApp(val)
       }
       
-      const handleSearchSubmit2=(e,val,id)=>{
+      const handleSearchSubmit2=(e,val,item)=>{
         e.preventDefault();
         setUserSuggestions([]);setTokenSuggestions([]);
         console.log("form submitted", val)
         // searchNFTFromApp(val,id)
-        }
+        navigate('/detail',{state:{item:item}});
+      }
 
     return (
         <div id="header">
-        <Link to='/' id='logo'>DeMusic</Link>
+        <Link to='/' id='logo'style={{fontFamily: "Rock Salt, cursive"}}>DeMusic</Link>
 
         {/* Search */}
         <div>
-        <input placeholder="Search NFT or people" type="search" className="input"  onChange={(e)=>{onChangeHandler(e.target.value)}} value={text}
-        style={{borderRadius:"10px",color:"black",backgroundColor:"white",height:"45px", padding: '10px', minWidth: '250px'}}/>
+        <input placeholder="Search for Artists and NFTs" type="search" className="input"  onChange={(e)=>{onChangeHandler(e.target.value)}} value={text}
+        style={{borderRadius:"10px",color:"black",backgroundColor:"white",height:"45px", padding: '10px', minWidth: '200px'}}/>
           {/* <TextField
           variant="outlined"
           margin="normal"
@@ -133,11 +137,11 @@ const Header = ({loadWeb3, account}) => {
        
           <div className="card-body" >
           {userSuggestions.length!=0?(
-             <div style={{maxHeight:"25vh",overflow:"auto"}}>
+             <div style={{maxHeight:"25vh",overflow:"auto",padding: "5px", textAlign: 'center'}}>
            
-             <h4>Creators</h4>
+             <h4 style={{fontFamily: "Rock Salt, cursive" }}>Artists</h4>
              {userSuggestions&&userSuggestions.map((result,i)=>
-              <div key={i}className={classes.suggestions}onClick={(e)=>{setText(result.userName);handleSearchSubmit(e,result.userName)}} style={{cursor:"pointer",paddingTop:"1px",paddingBottom:"1px",padding:"4px",borderRadius:"2px",display:"flex",alignItems:"center",overflowWrap:"break-word"}}>
+              <div key={i}className={classes.suggestions}onClick={(e)=>{setText(result.userName);handleSearchSubmit(e,result.userName)}} style={{cursor:"pointer",paddingTop:"1px",paddingBottom:"1px",padding:"4px",borderRadius:"2px",display:"flex",alignItems:"center",overflowWrap:"break-word", margin: "5px"}}>
                {/* <Avatar alt={result.userName} src={result.userAvatarHash}/> */}
                <b>@{result.userName}</b>
               </div>
@@ -145,12 +149,17 @@ const Header = ({loadWeb3, account}) => {
              </div>
           ):(null)}
           <hr/>
+          <br />
            {tokenSuggestions.length!=0?( 
-           <div style={{maxHeight:"25vh",overflow:"auto"}}>
-            <h4>Designs</h4>
+           <div style={{maxHeight:"25vh",overflow:"auto", padding: "5px", textAlign: 'center'}}>
+            <h4 style={{fontFamily: "Rock Salt, cursive"}}>Music</h4>
              {tokenSuggestions&&tokenSuggestions.map((result,i)=>
-             <div key={i}className={classes.suggestions} onClick={(e)=>{setText(result.name);handleSearchSubmit2(e,result.name,result.tokenId)}} style={{cursor:"pointer",paddingTop:"1px",padding:"4px",paddingBottom:"1px",borderRadius:"2px",display:"flex",alignItems:"center",overflowWrap:"break-word"}}>
-               {/* <img alt={result.name} src={result.image}style={{objectFit:"contain",borderRadius:0,width:"45px",height:"45px",display:"flex",alignItems:"center",postion:"relative"}}/> */}
+             <div key={i}className={classes.suggestions} onClick={(e)=>{
+               setText(result.name);
+               handleSearchSubmit2(e,result.name,result)
+              }}
+                style={{cursor:"pointer",paddingTop:"1px",padding:"4px",paddingBottom:"1px",borderRadius:"2px",display:"flex",alignItems:"center",overflowWrap:"break-word", margin: "5px"}}>
+               {/* <img alt={result.name} src={result.image}style={{objectFit:"contain",borderRadius:0,width:"45px",height:"45px",display:"flex",align``Items:"center",postion:"relative"}}/> */}
                <b>@{result.name}</b>
              </div>
             )}
