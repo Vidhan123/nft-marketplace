@@ -14,7 +14,7 @@ function TabPanel(props) {
   let navigate = useNavigate();
 
   let filteredList = index !== 'All' ? (
-    data.filter((item) => {
+     data.filter((item) => {
       return item.type === index
     })) : (
     data
@@ -30,7 +30,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <div id="card-list" style={{ flexDirection: type == "horizontal" ? "row" : "column", margin: '0 auto 100px auto' }}>
-          {filteredList.map((item, index) => (
+          {filteredList && filteredList.map((item, index) => (
             <NFTCard nftSrc={item.src} key={index} onClick={() => navigate('/detail', { state: { item: item } })} />
           ))}
         </div>
@@ -65,7 +65,7 @@ const CardList = ({ list, type = "horizontal" }) => {
   };
 
   let tags = ['All', 'Pop', 'Classical', 'Hip-Hop and Rap', 'EDM', 'Country', 'Folk']
-
+console.log(list)
   return (
     <div className={classes.root}>
       <AppBar position="static">
