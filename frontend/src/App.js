@@ -71,13 +71,16 @@ function App() {
 
       window.ethereum.on('accountsChanged', function () {
         // load details
+        fetchAccount();
         loadDetails();
+
       })
     }
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider.enable());
       window.ethereum.on('accountsChanged', function () {
         // load details
+        fetchAccount();
         loadDetails();
       })
     }
@@ -85,7 +88,13 @@ function App() {
       window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
     }
   }
-
+const loadAllNFTs=async()=>{
+  let {res2,res3} = await getAllNFTs(musicNFT);
+  setAllNfts(res2)
+  setNftCount(res3)
+  console.log("Allnfts",res2)
+  console.log("count",res3)
+}
   useEffect(() => {
     const Load = async () => {
       await loadWeb3();

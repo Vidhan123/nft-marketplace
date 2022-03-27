@@ -20,7 +20,7 @@ const styles = makeStyles(() => ({
 
 const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
     const classes = styles()
-    const [src, setSrc] = React.useState("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX");
+    const [aud, setAud] = React.useState("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX");
     const [music, setMusic] = React.useState(null)
     const [clickedChange, setClickedChange] = React.useState(false);
     const [name, setName] = React.useState("");
@@ -32,16 +32,19 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const data = { 'profile': src, 'name': name, 'price': price, 'description': description, 'music': music }
+        const data = { 'profile': aud, 'name': name, 'price': price, 'description': description, 'music': music,"category":category,"3d":is3d }
         
         console.log(data)
-        createNFTFromApp(name,description,src,music,price,category,is3d)
+        createNFTFromApp(name,description,aud,music,price,category,is3d)
     }
 
     const apply = (file) => {
         // var src = window.URL.createObjectURL(file);
         // setSrc(src);
-        setSrc(file);
+        console.log(file)
+
+
+        setAud(file);
         setClickedChange(false)
     }
     const captureAudio=(event)=> {
@@ -106,10 +109,12 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
                                         }}
                                         onClick={() => { setClickedChange(true) }}
                                     >
-                                        <img src={src} width='100%' alt="Preview" name="userAvatarHash" />
+                                        <img src={aud} width='100%' alt="Preview" name="userAvatarHash" />
                                     </div>
                                 )}
                             </div>
+                            <br/>
+                            <br/>
                             <Button
                                 width='100%'
                                 height='50px'
@@ -117,7 +122,7 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
                                 color={Colors.buttons.danger}
                                 fontSize='16px'
                                 textContent="Remove"
-                                onClick={() => setSrc("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX")}
+                                onClick={() => setAud("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX")}
                             >
                                 Remove Image
                             </Button>

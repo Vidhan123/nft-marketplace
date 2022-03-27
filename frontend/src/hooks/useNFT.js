@@ -14,6 +14,7 @@ function useNFT() {
     // setNftCount(nftCount)
     console.log(nftCount)
     let tempDes = [];
+  
           for (var i = 1; i <= nftCount; i++) {
 
 
@@ -30,10 +31,12 @@ function useNFT() {
                   "metadata": metaData
               }];
               tempDes.push(nftMus);
+            }
+              
 
             console.log(tempDes);
       return {tempDes,nftCount};
-    }
+    
   }
     catch(err) {
       console.log(err);
@@ -49,9 +52,12 @@ function useNFT() {
       const file = await ipfs.add(bufferImage)
       const imageHash = `https://ipfs.infura.io/ipfs/${file.path}`;
       //const imageIsUsed = await musicNFT.methods.imageExists(imageHash).call();
+      console.log("img",imageHash);
       // if(!imageIsUsed){
         const file2 = await ipfs.add(bufferMusic)
+        
         const audioHash = `https://ipfs.infura.io/ipfs/${file2.path}`;
+        console.log("aud",audioHash);
         // if(!audioHash){
           let price = tokenPrice;
           price = window.web3.utils.toWei(tokenPrice.toString(), "Ether");
@@ -64,6 +70,7 @@ function useNFT() {
             price: price,    
         // }
           }
+          console.log(account)
         const cid = await ipfs.add(JSON.stringify(tokenObject))
         let tokenURI = `https://ipfs.infura.io/ipfs/${cid.path}`;
         musicNFT.methods
