@@ -94,6 +94,22 @@ const UserCardList = ({ account, list, type = "horizontal" }) => {
         "Transfers": "0",
         "Ownership": "Created",
         "Category": "Folk"
+    },{
+        "name": "Ta Ta Thaiya",
+        "Owner": "Rishi Lakhani",
+        'src': "https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "Transfers": "0",
+        "Ownership": "Created",
+        "Category": "Folk"
+    },{
+        "name": "Ta Ta Thaiya",
+        "Owner": "Rishi Lakhani",
+        'src': "https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "Transfers": "0",
+        "Ownership": "Created",
+        "Category": "Folk"
     }, {
         "name": "Ta Ta Thaiya",
         "Owner": "Rishi Lakhani",
