@@ -101,7 +101,7 @@ const UserCardList = ({ list, type = "horizontal" }) => {
         "Category": "Folk"
     }]
 
-    let tags = ['Collected', 'Created', 'Activities']
+    let tags = ['Collected', 'Created', 'Favourited', 'Activities']
 
     return (
         <div className={classes.root}>
