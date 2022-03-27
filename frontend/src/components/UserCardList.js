@@ -30,11 +30,17 @@ function TabPanel(props) {
         >
             {value !== "Activities" ? (
                 value === index && (
-                    <div id="card-list" style={{ flexDirection: type == "horizontal" ? "row" : "column", margin: '0 auto 100px auto' }}>
-                        {filteredList.map((item, index) => (
-                            <NFTCard nftSrc={item.src} key={index} onClick={() => navigate('/detail', { state: { item: item } })} />
-                        ))}
-                    </div>
+                    <>
+                        <div id="card-list" style={{ flexDirection: type === "horizontal" ? "row" : "column", margin: '0 auto' }}>
+                            {filteredList.map((item, index) => (
+                                <NFTCard nftSrc={item.src} key={index} onClick={() => navigate('/detail', { state: { item: item } })} />
+                            ))}
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </>
                 )
             ) : (
                 <Typography variant='h4' align='center' style={{ color: 'white', marginTop: '20px' }}>Activities</Typography>
@@ -53,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: 'black',
+        margin: '0',
         marginTop: '50px'
     },
     tabs: {
@@ -71,7 +78,7 @@ const UserCardList = ({ list, type = "horizontal" }) => {
     const dummy = [{
         "name": "Ta Ta Thaiya",
         "Owner": "Rishi Lakhani",
-        'src': "https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX",
+        'src': "https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "Transfers": "4",
         "Ownership": "Collected",
@@ -79,7 +86,7 @@ const UserCardList = ({ list, type = "horizontal" }) => {
     }, {
         "name": "Ta Ta Thaiya",
         "Owner": "Rishi Lakhani",
-        'src': "https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX",
+        'src': "https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "Transfers": "0",
         "Ownership": "Created",
@@ -87,7 +94,7 @@ const UserCardList = ({ list, type = "horizontal" }) => {
     }, {
         "name": "Ta Ta Thaiya",
         "Owner": "Rishi Lakhani",
-        'src': "https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX",
+        'src': "https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "Transfers": "4",
         "Ownership": "Collected",
