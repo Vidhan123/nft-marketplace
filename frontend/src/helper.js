@@ -1,3 +1,13 @@
+export const convertFromWei = (a, rounded=5) => {
+  let num = window.web3.utils.fromWei(a);
+  var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (rounded || -1) + '})?');
+  return parseFloat(num.toString().match(re)[0]);
+}
+
+export const convertToWei = (a) => {
+  return window.web3.utils.toWei(a);
+}
+
 const convertToCSV = (objArray) => {
   let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
   let str = '';
