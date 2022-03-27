@@ -10,7 +10,7 @@ const Home = ({ loadWeb3, account }) => {
     <div id="home">
       <Hero loadWeb3={loadWeb3} account={account} />
 
-      <p id="card-list-header-text"> Hot Drops </p>
+      <p id="card-list-header-text"> Trending </p>
       <div id="list-container">
         <CardList list={hotDropsData} />
       </div>

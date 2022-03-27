@@ -144,7 +144,8 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
                                 </RadioGroup>
                                 <Typography variant='h6' style={{ color: 'white', textAlign: 'left', marginLeft: '10px', marginTop: '20px' }}>Description</Typography>
                                 <TextInput width="100%" height="30px" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-                                <Button width='100%' height='50px' color={Colors.buttons.secondary} fontSize='20px' margin='30px 0 0 0' textContent="Save" />
+                                <br />
+                                <Button width='100%' height='50px' color={Colors.buttons.secondary} fontSize='20px' margin='30px 0 0 0' textContent="Create" />
                             </form>
                         </Grid>
                     </Grid>

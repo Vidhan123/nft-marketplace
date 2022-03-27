@@ -26,11 +26,11 @@ function App() {
   const [loading,setLoading]=useState(false);
   const [nftCount,setNftCount]=useState(0);
 
-  const [allUsers,setAllUsers]=useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
-  const { getUser, getAllUsers,updateUser } = useAPI();
-  const { getAllNFTs,createNFT,buyNFT,toggleForSale,changeTokenPrice,getTokenMetaData } = useNFT();
- 
+  const { getUser, getAllUsers, updateUser } = useAPI();
+  const { getAllNFTs, createNFT, buyNFT, toggleForSale, changeTokenPrice, getTokenMetaData } = useNFT();
+
   const fetchAccount = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
     setAccount(accounts[0]); 
@@ -67,8 +67,8 @@ function App() {
 
   const loadWeb3 = async () => {
     if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
-    
+      window.web3 = new Web3(window.ethereum)
+
       window.ethereum.on('accountsChanged', function () {
         // load details
         loadDetails();
@@ -100,24 +100,24 @@ function App() {
     const res2 = await createNFT(musicNFT,name, description, bufferImage,bufferMusic, newTokenPrice, categories,is3d,account);
    console.log(res2)
   }
-  const toggleForSaleFromApp=async(tokenID)=>{
-      const res2=await toggleForSale(musicNFT,tokenID,account)
-      if(res2=="confirmed"){
-        console.log("status changed")
-      }
+  const toggleForSaleFromApp = async (tokenID) => {
+    const res2 = await toggleForSale(musicNFT, tokenID, account)
+    if (res2 == "confirmed") {
+      console.log("status changed")
+    }
   }
 
-  const changeTokenPriceFromApp=async(tokenID,newPrice)=>{
+  const changeTokenPriceFromApp = async (tokenID, newPrice) => {
     const newTokenPrice = window.web3.utils.toWei(newPrice, "Ether");
-    const res2=await changeTokenPrice(musicNFT,tokenID,newTokenPrice,account)
-    if(res2=="confirmed"){
+    const res2 = await changeTokenPrice(musicNFT, tokenID, newTokenPrice, account)
+    if (res2 == "confirmed") {
       console.log("price changed")
     }
   }
 
-  const buyNFTFromApp=async(tokenID,price)=>{
-    const res2=await buyNFT(musicNFT,tokenID,price,account)
-    if(res2=="confirmed"){
+  const buyNFTFromApp = async (tokenID, price) => {
+    const res2 = await buyNFT(musicNFT, tokenID, price, account)
+    if (res2 == "confirmed") {
       console.log("price changed")
     }
   }
@@ -125,7 +125,7 @@ function App() {
   const createUserFromApp = async(details)=>{
     const res=await updateUser(account,details)
     console.log(res)
-    if(res){
+    if (res) {
       loadDetails();
     }
   }
@@ -159,7 +159,10 @@ function App() {
               account={account}
             />
           } />
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/profile" element={
+            <>Profile Page</>
+            // <Profile />
+          } />
           {/* <Route path="/stats" element={<Stats />} /> */}
           <Route path="/" element={ 
             <Home
@@ -170,7 +173,7 @@ function App() {
           } />
         </Routes>
       </BrowserRouter>
-    </>    
+    </>
   );
 }
 
