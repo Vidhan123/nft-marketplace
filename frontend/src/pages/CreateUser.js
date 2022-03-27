@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '../components/base/Card';
-import Button from '../components/base/Button';
+import Button from '../components/base/Button2';
 import TextInput from '../components/base/TextInput2';
 import AvatarImageCropper from 'react-avatar-image-cropper';
 import { Container, Grid, TextField, Typography } from '@material-ui/core'
@@ -46,6 +46,8 @@ const CreateUser = ({ createUserFromApp, loadWeb3, account }) => {
             />
             <Card width='75%' height='75%' child={
                 <>
+                    <br />
+                    <br />
                     <Typography variant='h4' style={{ color: 'white', margin: '20px' }}>Edit Profile</Typography>
                     <Grid container spacing={4} style={{ display: 'flex', justifyContent: 'center' }}>
                         <Grid item md={4} style={{ padding: '50px', alignItems: 'center' }}>

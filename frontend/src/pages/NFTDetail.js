@@ -69,7 +69,7 @@ const NFTDetail = ({ loadWeb3, account }) => {
                     child={
                       <div id="button-child">
                         <FaEthereum size="28px" />
-                        <p id="price">1254</p>
+                        <p id="price">0.3</p>
                       </div>
                     }
                   ></Button>
