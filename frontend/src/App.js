@@ -45,16 +45,18 @@ function App() {
   const loadBlockchainData = async () => {
     const web3 = window.web3;
 
-    const contractAddress ="0x0ED91283C04C1c784e71F88B837AaCB771BEdc9c";
+    const contractAddress ="0x9e285F51342CF5a6fE0F5a201E7C35351792796d";
     console.log(DigiMusicabi)
     const contract = new web3.eth.Contract(DigiMusicabi, contractAddress);
     console.log(contract)
     setMusicNFT(contract);
 
     // Get All NFTs
-    let res2,res3 = await getAllNFTs(contract);
+    let {res2,res3} = await getAllNFTs(contract);
     setAllNfts(res2)
     setNftCount(res3)
+    console.log("Allnfts",res2)
+    console.log("count",res3)
   }
   
   const loadAllUsers = async () => {
@@ -65,7 +67,7 @@ function App() {
 
   const loadWeb3 = async () => {
     if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum)
+      window.web3 = new Web3(window.ethereum);
     
       window.ethereum.on('accountsChanged', function () {
         // load details
@@ -73,7 +75,7 @@ function App() {
       })
     }
     else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider)
+      window.web3 = new Web3(window.web3.currentProvider.enable());
       window.ethereum.on('accountsChanged', function () {
         // load details
         loadDetails();
@@ -93,8 +95,9 @@ function App() {
     Load()
   }, [])
   
-  const createNFTFromApp=async(name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d)=>{
-    const res2 = await createNFT(musicNFT,name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d,account);
+  const createNFTFromApp=async(name, description, bufferImage,bufferMusic, tokenPrice,categories,is3d)=>{
+    const newTokenPrice = window.web3.utils.toWei(tokenPrice, "Ether");
+    const res2 = await createNFT(musicNFT,name, description, bufferImage,bufferMusic, newTokenPrice, categories,is3d,account);
    console.log(res2)
   }
   const toggleForSaleFromApp=async(tokenID)=>{
@@ -135,6 +138,7 @@ function App() {
             <CreateNFT 
               loadWeb3={fetchAccount}
               account={account}
+              createNFTFromApp={createNFTFromApp}
             />} 
           />
           <Route path="/editProfile" element={
