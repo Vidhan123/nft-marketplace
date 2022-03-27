@@ -14,6 +14,8 @@ import useNFT from './hooks/useNFT';
 import ipfs from "./hooks/ipfs";
 import Header from "./components/Header";
 
+import UserPage from "./pages/UserPage";
+
 function App() {
 
   const [musicNFT, setMusicNFT] = useState(null);
@@ -170,8 +172,10 @@ const loadAllNFTs=async()=>{
             />
           } />
           <Route path="/profile" element={
-            <>Profile Page</>
-            // <Profile />
+            <UserPage 
+              loadWeb3={fetchAccount}
+              account={account}
+            />
           } />
           {/* <Route path="/stats" element={<Stats />} /> */}
           <Route path="/" element={ 
