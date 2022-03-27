@@ -9,9 +9,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Typography } from "@material-ui/core";
+import Activity from "./Activity";
 
 function TabPanel(props) {
-    const { data, value, index, type, ...other } = props;
+    const { account, data, value, index, type, ...other } = props;
     let navigate = useNavigate();
 
     let filteredList = index !== 'Activities' && (
@@ -43,7 +44,9 @@ function TabPanel(props) {
                     </>
                 )
             ) : (
-                <Typography variant='h4' align='center' style={{ color: 'white', marginTop: '20px' }}>Activities</Typography>
+                <>
+                 <Activity account={account} />
+                </>
             )}
         </div>
     );
@@ -67,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const UserCardList = ({ list, type = "horizontal" }) => {
+const UserCardList = ({ account, list, type = "horizontal" }) => {
     const [value, setValue] = React.useState('Collected');
     const classes = useStyles();
 
@@ -113,7 +116,7 @@ const UserCardList = ({ list, type = "horizontal" }) => {
                 </Tabs>
             </AppBar>
             {tags.map((item, index) => (
-                <TabPanel value={value} key={index} index={item} data={dummy} type={type} />
+                <TabPanel value={value} key={index} index={item} data={dummy} type={type} account={account} />
             ))}
         </div>
     );

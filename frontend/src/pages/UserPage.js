@@ -22,7 +22,7 @@ const UserPage = ({ loadWeb3, account }) => {
             <Typography variant='h4' align='center' style={{ color: 'white', marginTop: '20px' }}>{dummy.Name}</Typography>
             <Typography variant='h6' align='center' style={{ color: 'white', marginTop: '20px' }}>{dummy.Creations} Creations | {dummy.Followers} Followers</Typography>
             <Divider style={{ backgroundColor: 'white', marginTop: '5%' }}/>
-            <UserCardList />
+            <UserCardList account={account} />
         </Container>
     )
 }
