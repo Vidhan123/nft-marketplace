@@ -16,7 +16,7 @@ const Explore2 = ({ loadWeb3, account,allNFTS }) => {
       <Search/>
       <p id="card-list-header-text" style={{ textAlign: 'center' }} > Explore By Genres </p>
       <div id="list-container">
-        <CardList2 list={allNFTS} />
+        <CardList2 list={exploreList} />
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ function useNFT() {
               
 
             console.log(tempDes);
-      return {tempDes,nftCount};
+      return tempDes;
     
   }
     catch(err) {

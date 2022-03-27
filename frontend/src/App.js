@@ -54,11 +54,11 @@ function App() {
     setMusicNFT(contract);
 
     // Get All NFTs
-    let {res2,res3} = await getAllNFTs(contract);
+    let res2 = await getAllNFTs(contract);
     setAllNfts(res2)
-    setNftCount(res3)
+    setNftCount(res2.length)
     console.log("Allnfts",res2)
-    console.log("count",res3)
+    console.log("count",res2.length)
   }
   
   const loadAllUsers = async () => {
