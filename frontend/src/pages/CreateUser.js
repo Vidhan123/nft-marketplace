@@ -1,11 +1,12 @@
 import React from 'react'
 import Card from '../components/base/Card';
 import Button from '../components/base/Button';
-import TextInput from '../components/base/TextInput';
+import TextInput from '../components/base/TextInput2';
 import AvatarImageCropper from 'react-avatar-image-cropper';
 import { Container, Grid, TextField, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { Colors } from '../constants/Colors';
+import Header from "../components/Header";
 
 const styles = makeStyles(() => ({
     card: {
@@ -16,7 +17,7 @@ const styles = makeStyles(() => ({
     },
 }))
 
-const CreateUser = ({ createUserFromApp }) => {
+const CreateUser = ({ createUserFromApp, loadWeb3, account }) => {
     const classes = styles()
     const [src, setSrc] = React.useState("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX");
     const [clickedChange, setClickedChange] = React.useState(false);
@@ -39,6 +40,10 @@ const CreateUser = ({ createUserFromApp }) => {
 
     return (
         <Container style={{ display: 'flex', justifyContent: 'center' }} >
+            <Header 
+                loadWeb3={loadWeb3}
+                account={account}
+            />
             <Card width='75%' height='75%' child={
                 <>
                     <Typography variant='h4' style={{ color: 'white', margin: '20px' }}>Edit Profile</Typography>
@@ -89,7 +94,7 @@ const CreateUser = ({ createUserFromApp }) => {
                         <Grid item md={8} style={{ padding: '30px' }}>
                             <form className="form" noValidate onSubmit={handleSubmit}>
                                 <Typography variant='h6' style={{ color: 'white', textAlign: 'left', marginLeft: '10px', marginTop: '20px' }}>Name</Typography>
-                                <TextInput width="100%" height="30px" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                                <TextInput width="100%" height="30px" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value);console.log("here",e.target.value)} }/>
                                 <Typography variant='h6' style={{ color: 'white', textAlign: 'left', marginLeft: '10px', marginTop: '20px' }}>Email id</Typography>
                                 <TextInput width="100%" height="30px" placeholder="Email id" value={email} onChange={(e) => setEmail(e.target.value)} />
                                 <Typography variant='h6' style={{ color: 'white', textAlign: 'left', marginLeft: '10px', marginTop: '20px' }}>Bio</Typography>

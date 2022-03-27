@@ -12,6 +12,7 @@ function useNFT() {
     .musicCounter()
     .call();
     // setNftCount(nftCount)
+    console.log(nftCount)
     let tempDes = [];
           for (var i = 1; i <= nftCount; i++) {
 
@@ -44,14 +45,14 @@ function useNFT() {
     const nameIsUsed = await musicNFT.methods
     .tokenNameExists(name)
     .call();
-    if (!nameIsUsed) {
+    // if (!nameIsUsed) {
       const file = await ipfs.add(bufferImage)
       const imageHash = `https://ipfs.infura.io/ipfs/${file.path}`;
       const imageIsUsed = await musicNFT.methods.imageExists(imageHash).call();
-      if(!imageIsUsed){
+      // if(!imageIsUsed){
         const file2 = await ipfs.add(bufferMusic)
         const audioHash = `https://ipfs.infura.io/ipfs/${file2.path}`;
-        if(!audioHash){
+        // if(!audioHash){
           let price = tokenPrice;
           price = window.web3.utils.toWei(tokenPrice.toString(), "Ether");
           const tokenObject = {
@@ -61,7 +62,8 @@ function useNFT() {
             description: description,
             mintedBy: account,
             price: price,    
-        }
+        // }
+          }
         const cid = await ipfs.add(JSON.stringify(tokenObject))
         let tokenURI = `https://ipfs.infura.io/ipfs/${cid.path}`;
         musicNFT.methods
@@ -72,17 +74,17 @@ function useNFT() {
                       .on("confirmation", () => {console.log("confirmed")
                       return "confirmed"})
         }
-        else{
-            return "audioUsed"
-        }
-      }
-      else{
-          return "imageUsed"
-      }
-    }else{
-        return "nameUsed"
-    }
-  }
+    //     else{
+    //         return "audioUsed"
+    //     }
+    //   }
+    //   else{
+    //       return "imageUsed"
+    //   }
+    // }else{
+    //     return "nameUsed"
+    // }
+  
 
   const buyNFT = async (musicNFT,tokenId,price,account) => {
     musicNFT.methods

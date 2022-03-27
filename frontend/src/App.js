@@ -4,16 +4,15 @@ import Web3 from 'web3';
 import ipfsClient from 'ipfs-http-client';
 
 import Home from "./pages/Home";
-import Create from "./pages/Create";
+import CreateNFT from "./pages/CreateNFT";
 import CreateUser from "./pages/CreateUser";
-import Explore from "./pages/Explore";
+import Explore2 from "./pages/Explore2";
 import NFTDetail from "./pages/NFTDetail";
 import DigiMusicabi from "./abis/DigiMusicabi.json";
 import useAPI from './hooks/useAPI';
 import useNFT from './hooks/useNFT';
 import ipfs from "./hooks/ipfs";
-
-
+import Header from "./components/Header";
 
 function App() {
 
@@ -23,10 +22,9 @@ function App() {
   const [allNfts, setAllNfts] = useState([]);
 
 
-  const [metamaskConnected, setMetamaskConnected] = useState(false)
-  const [accountBalance, setAccountBalance] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [nftCount, setNftCount] = useState(0);
+  const [accountBalance,setAccountBalance]=useState(0);
+  const [loading,setLoading]=useState(false);
+  const [nftCount,setNftCount]=useState(0);
 
   const [allUsers, setAllUsers] = useState([]);
 
@@ -34,15 +32,8 @@ function App() {
   const { getAllNFTs, createNFT, buyNFT, toggleForSale, changeTokenPrice, getTokenMetaData } = useNFT();
 
   const fetchAccount = async () => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    if (accounts.length === 0) {
-      setMetamaskConnected(false)
-    }
-    else {
-      setAccount(accounts[0]);
-      setMetamaskConnected(true)
-    }
-
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
+    setAccount(accounts[0]); 
   }
 
   const loadDetails = async () => {
@@ -61,17 +52,14 @@ function App() {
     setMusicNFT(contract);
 
     // Get All NFTs
-    let res2, res3 = await getAllNFTs(musicNFT);
+    let res2,res3 = await getAllNFTs(contract);
     setAllNfts(res2)
     setNftCount(res3)
   }
-
-
+  
   const loadAllUsers = async () => {
     const res2 = await getAllUsers();
     setAllUsers(res2);
-
-
   }
 
 
@@ -98,30 +86,16 @@ function App() {
 
   useEffect(() => {
     const Load = async () => {
-
       await loadWeb3();
       await loadBlockchainData();
       await loadAllUsers();
-
-
     }
     Load()
   }, [])
-  console.log(musicNFT)
-  const createNFTFromApp = async (name, description, bufferImage, bufferMusic, tokenPrice, finalbuffer, categories, is3d) => {
-    const res2 = await createNFT(musicNFT, name, description, bufferImage, bufferMusic, tokenPrice, finalbuffer, categories, is3d, account);
-    if (res2 == "confirmed") {
-      console.log("success")
-    }
-    else if (res2 == "audioUsed") {
-      console.log("audioUsed")
-    }
-    else if (res2 == "imageUsed") {
-      console.log("imageUsed")
-    }
-    else {
-      console.log("nameUsed")
-    }
+  
+  const createNFTFromApp=async(name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d)=>{
+    const res2 = await createNFT(musicNFT,name, description, bufferImage,bufferMusic, tokenPrice, finalbuffer, categories,is3d,account);
+   console.log(res2)
   }
   const toggleForSaleFromApp = async (tokenID) => {
     const res2 = await toggleForSale(musicNFT, tokenID, account)
@@ -145,24 +119,48 @@ function App() {
     }
   }
 
-  const createUserFromApp = async (details) => {
-    const res = await updateUser(account, details)
+  const createUserFromApp = async(details)=>{
+    const res=await updateUser(account,details)
     console.log(res)
     if (res) {
       loadDetails();
     }
   }
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/create" element={<Create />} />
-          <Route path="/createUser" element={<CreateUser />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/detail" element={<NFTDetail />} />
-          {/* <Route path="/profile" element={<Profile />} />
-          <Route path="/stats" element={<Stats />} /> */}
-          <Route path="/" element={
+          <Route path="/create" element={
+            <CreateNFT 
+              loadWeb3={fetchAccount}
+              account={account}
+            />} 
+          />
+          <Route path="/editProfile" element={
+            <CreateUser
+              loadWeb3={fetchAccount}
+              account={account}
+            />
+          } />
+          <Route path="/explore" element={
+            <Explore2 
+              loadWeb3={fetchAccount}
+              account={account}
+            />
+          } />
+          <Route path="/detail" element={
+            <NFTDetail 
+              loadWeb3={fetchAccount}
+              account={account}
+            />
+          } />
+          <Route path="/profile" element={
+            <>Profile Page</>
+            // <Profile />
+          } />
+          {/* <Route path="/stats" element={<Stats />} /> */}
+          <Route path="/" element={ 
             <Home
               loadWeb3={fetchAccount}
               account={account}
