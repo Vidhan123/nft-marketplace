@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import CreateNFT from "./pages/CreateNFT";
 import CreateUser from "./pages/CreateUser";
 import Explore2 from "./pages/Explore2";
-import NFTDetail from "./pages/NFTDetail";
+import NFTDetail from "./pages/NFTDetail2";
 import DigiMusicabi from "./abis/DigiMusicabi.json";
 import useAPI from './hooks/useAPI';
 import useNFT from './hooks/useNFT';
