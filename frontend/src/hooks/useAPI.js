@@ -29,7 +29,7 @@ function useAPI() {
   const updateUser = async (walletAddress, data) => {
     try {
       const res = await axios.put(`${URL}/user/${walletAddress}`, data);
-    
+    console.log(res);
       return res.data;
     }
     catch(err) {

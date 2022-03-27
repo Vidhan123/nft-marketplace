@@ -160,6 +160,7 @@ const loadAllNFTs=async()=>{
             <Explore2 
               loadWeb3={fetchAccount}
               account={account}
+              allNFTS={allNfts}
             />
           } />
           <Route path="/detail" element={
