@@ -12,8 +12,9 @@ import { Container, Grid, Typography } from '@material-ui/core'
 import AudioPlay from "../components/AudioPlay";
 import TextInput from "../components/base/TextInput";
 import { Colors } from '../constants/Colors';
+import Header from "../components/Header";
 
-const NFTDetail2 = () => {
+const NFTDetail2 = ({ loadWeb3, account,buyNFTFromApp }) => {
     const isMobile = useMobile();
     const [colors, setColors] = useState([]);
     const [isLike, setIsLike] = useState(false);
@@ -37,11 +38,17 @@ const NFTDetail2 = () => {
         "price":"0.5",
         "like":"100",
     }
-
+const buyNFT=()=>{
+    buyNFTFromApp(dummy.tokenID,dummy.price)
+}
     const isARSupport = useARStatus(state.item.src);
 
     return (
         <Container style={{ display: 'flex', justifyContent: 'center', margin: '50px auto' }}>
+            <Header 
+                loadWeb3={loadWeb3}
+                account={account}
+            />
             <Card
                 width={isMobile ? "100%" : "80%"}
                 height={isMobile ? "700px" : "80%"}
@@ -65,21 +72,27 @@ const NFTDetail2 = () => {
                         <Grid item xs={5}>
                             <div style={{ maxHeight: '100%', overflow: 'hidden' }}>
                                 <Typography variant='h4' style={{ color: 'white', fontFamily: 'cursive' }}> {dummy.Name} </Typography>
+                                <br />
                                 <Typography variant='body2' style={{ color: 'white' }}> {dummy.Owner} </Typography>
+                                <br />
                                 <Typography variant='body1' style={{ color: 'white', margin: '20px 0 0 0', textAlign: 'start' }}>Description: {dummy.Description} </Typography>
+                                <br />
                                 <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>No. of Transfers: {dummy.Transfers} </Typography>
+                                <br />
                                 <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>Music Type: {dummy.Category} </Typography>
-                                <Typography variant='h6' style={{ color: 'white', textAlign: 'left', marginLeft: '10px', marginTop: '20px' }}>Price</Typography>
-                                <TextInput width="100%" height="30px" placeholder="New Price" value={price} onChange={(e) => setPrice(e.target.value)} />
-                                <Button width='40%' height='50px' color={Colors.buttons.primary} fontSize='15px' margin='20px 5% 20px 5%' textContent="Update Price" />
-                                <Button width='40%' height='50px' color={Colors.buttons.danger} fontSize='15px' margin='20px 5% 20px 5%' textContent="Remove from Sale" />
+                                <br />
+                                {/* <Typography variant='h6' style={{ color: 'white', textAlign: 'left', 
+                                marginLeft: '10px', marginTop: '20px' }}>Price</Typography> */}
+                                {/* <TextInput width="100%" height="30px" placeholder="New Price" value={price} onChange={(e) => setPrice(e.target.value)} /> */}
+                                {/* <Button width='40%' height='50px' color={Colors.buttons.primary} fontSize='15px' margin='20px 5% 20px 5%' textContent="Update Price" />
+                                <Button width='40%' height='50px' color={Colors.buttons.danger} fontSize='15px' margin='20px 5% 20px 5%' textContent="Remove from Sale" /> */}
                             </div>
                             <Grid container>
                                 <Grid item xs={9}>
                                 <Button
                                     width={isMobile ? "70%" : "100%"}
                                     height="50px"
-                                    onClick={buyNFTFromApp(dummy.tokenID,dummy.price)}
+                                    onClick={buyNFT}
                                     child={
                                         <Typography variant='h6' color={Colors.buttons.primary}><FaEthereum size="20px" /> {dummy.price}</Typography>
                                     }
