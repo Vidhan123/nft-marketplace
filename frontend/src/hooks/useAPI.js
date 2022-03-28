@@ -6,8 +6,9 @@ function useAPI() {
 
   const getUser = async (walletAddress) => {
     try {
+      console.log("getwallet",walletAddress)
       const res = axios.get(`${URL}/user/${walletAddress}`)
-
+      console.log(res);
       return res.data;
     }
     catch(err) {
@@ -17,6 +18,7 @@ function useAPI() {
 
   const getAllUsers = async () => {
     try {
+      console.log("here all")
       const res = axios.get(`${URL}/user/all`)
       console.log(res);
       return res.data;

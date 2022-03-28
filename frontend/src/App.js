@@ -35,11 +35,15 @@ function App() {
 
   const fetchAccount = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
+    console.log(accounts[0])
     setAccount(accounts[0]); 
+    const res2 = await getUser(accounts[0]);
+    setUser(res2);
   }
 
   const loadDetails = async () => {
     // User
+    console.log("account",account);
     const res2 = await getUser(account);
     setUser(res2);
   }
@@ -63,6 +67,7 @@ function App() {
   
   const loadAllUsers = async () => {
     const res2 = await getAllUsers();
+    console.log("allUsers",res2)
     setAllUsers(res2);
   }
 
@@ -70,11 +75,11 @@ function App() {
   const loadWeb3 = async () => {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
-
-      window.ethereum.on('accountsChanged', function () {
+      console.log('wineth')
+      window.ethereum.on('accountsChanged', async function () {
         // load details
-        fetchAccount();
-        loadDetails();
+       await fetchAccount();
+      //  await loadDetails();
 
       })
     }
@@ -83,7 +88,7 @@ function App() {
       window.ethereum.on('accountsChanged', function () {
         // load details
         fetchAccount();
-        loadDetails();
+        // loadDetails();
       })
     }
     else {
@@ -99,9 +104,10 @@ const loadAllNFTs=async()=>{
 }
   useEffect(() => {
     const Load = async () => {
+      await loadAllUsers();
       await loadWeb3();
       await loadBlockchainData();
-      await loadAllUsers();
+      
     }
     Load()
   }, [])
@@ -156,6 +162,7 @@ console.log("allUsers",allUsers)
             <CreateUser
               loadWeb3={fetchAccount}
               account={account}
+              createUserFromApp={createUserFromApp}
             />
           } />
           <Route path="/explore" element={

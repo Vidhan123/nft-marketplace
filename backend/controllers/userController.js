@@ -1,8 +1,10 @@
 const User = require("../models/userModel");
 
-exports.updatedUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
 	const { walletAddress } = req.params;
+	console.log("req",req.body)
 	const ad = await User.findOne({ walletAddress: walletAddress });
+	console.log("ad",ad)
   if(!ad.isAdmin && req.body.isAdmin) req.body.isAdmin = false;
 
 	const updatedUser = await User.findByIdAndUpdate(ad._id, req.body, {
@@ -15,9 +17,11 @@ exports.updatedUser = async (req, res) => {
 
 exports.getUser = async (req, res) => {
 	const { walletAddress } = req.params;
+	console.log("user",req.params)
 	const user = await User.findOne({ walletAddress: walletAddress }).populate(
 		'followers following'
 	);
+	console.log("user",user)
 	if(!user) {
 		// Create user
 		let newUser = new User({
@@ -33,7 +37,8 @@ exports.getUser = async (req, res) => {
 };
 
 exports.getAllUsers = async (req, res) => {
+	console.log("all users")
   const items = await User.find().populate('followers following');
-
+console.log(items)
   res.status(200).json(items);
 };
