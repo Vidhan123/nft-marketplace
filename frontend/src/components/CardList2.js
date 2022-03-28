@@ -31,7 +31,7 @@ function TabPanel(props) {
       {value === index && (
         <div id="card-list" style={{ flexDirection: type == "horizontal" ? "row" : "column", margin: '0 auto 100px auto' }}>
           {filteredList && filteredList.map((item, index) => (
-            <NFTCard nftSrc={item.src} key={index} onClick={() => navigate('/detail', { state: { item: item } })} />
+            <NFTCard nftSrc={item.src} key={index} name={item.name} index={index} onClick={() => navigate('/detail', { state: { item: item } })} />
           ))}
         </div>
       )}

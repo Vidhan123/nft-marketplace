@@ -20,7 +20,7 @@ const styles = makeStyles(() => ({
 
 const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
     const classes = styles()
-    const [aud, setAud] = React.useState("https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX");
+    const [aud, setAud] = React.useState(null);
     const [music, setMusic] = React.useState(null)
     const [clickedChange, setClickedChange] = React.useState(false);
     const [name, setName] = React.useState("");
@@ -109,7 +109,14 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
                                         }}
                                         onClick={() => { setClickedChange(true) }}
                                     >
-                                        <img src={aud} width='100%' alt="Preview" name="userAvatarHash" />
+                                        {
+                                            aud ?
+                                            <img src={URL.createObjectURL(aud)} width='100%' alt="Preview" name="userAvatarHash" />
+                                            :
+                                            <img src={"https://ipfs.infura.io/ipfs/QmZ7smTQUxBXZW7Bx14VuxPgBurp2PcF7H9G6F74nC9viX"} width='100%' alt="Preview" name="userAvatarHash" />
+                                            
+                                        }
+                                        
                                     </div>
                                 )}
                             </div>

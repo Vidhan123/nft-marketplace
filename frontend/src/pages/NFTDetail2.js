@@ -31,8 +31,8 @@ const NFTDetail2 = ({ loadWeb3, account,buyNFTFromApp }) => {
 
     const dummy = {
         "Name": "Ta Ta Thaiya",
-        "Owner": "Rishi Lakhani",
-        "Description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "Owner": "Varun Mehta",
+        "Description": "Some random descriptionn",
         "Transfers": "4",
         "Category": "Folk",
         "price":"0.5",
@@ -81,6 +81,12 @@ const buyNFT=()=>{
                                 <br />
                                 <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>Music Type: {dummy.Category} </Typography>
                                 <br />
+                                <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>No. of Plays: 6 </Typography>
+                                <br />
+                                <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>No. of Unique Listners: 1 </Typography>
+                                <br />
+                                <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>Avg. Listening Time: 2.3 minutes </Typography>
+                                <br />
                                 {/* <Typography variant='h6' style={{ color: 'white', textAlign: 'left', 
                                 marginLeft: '10px', marginTop: '20px' }}>Price</Typography> */}
                                 {/* <TextInput width="100%" height="30px" placeholder="New Price" value={price} onChange={(e) => setPrice(e.target.value)} /> */}
@@ -94,7 +100,7 @@ const buyNFT=()=>{
                                     height="50px"
                                     onClick={buyNFT}
                                     child={
-                                        <Typography variant='h6' color={Colors.buttons.primary}><FaEthereum size="20px" /> {dummy.price}</Typography>
+                                        <Typography variant='h6' color={Colors.buttons.primary}><FaEthereum size="20px" /> 0.3 </Typography>
                                     }
                                 />
                                 </Grid>
@@ -117,7 +123,7 @@ const buyNFT=()=>{
                                             />
                                         )}
                                     </button>
-                                    <Typography variant='body1' style={{ color: 'white' }}>{dummy.like}</Typography>
+                                    <Typography variant='body1' style={{ color: 'white' }}>0</Typography>
                                 </div>
                                 </Grid>
                             </Grid>

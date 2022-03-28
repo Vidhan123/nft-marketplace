@@ -87,7 +87,7 @@ const NFTDetail = ({ loadWeb3, account,buyNFTFromApp }) => {
                     child={
                       <div id="button-child">
                         <FaEthereum size="28px" />
-                        <p id="price">Buy for {dummy.price}</p>
+                        <p id="price">0.3</p>
                       </div>
                     }
                   ></Button>
