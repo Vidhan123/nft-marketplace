@@ -68,6 +68,7 @@ function useNFT() {
             description: description,
             mintedBy: account,
             price: price,    
+            categories:categories
         // }
           }
           console.log(account)

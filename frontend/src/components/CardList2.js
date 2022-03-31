@@ -15,7 +15,7 @@ function TabPanel(props) {
 
   let filteredList = index !== 'All' ? (
      data && data.filter((item) => {
-      return item.type === index
+      return item[0].metadata.categories === index
     })) : (
     data
   )
@@ -31,7 +31,7 @@ function TabPanel(props) {
       {value === index && (
         <div id="card-list" style={{ flexDirection: type == "horizontal" ? "row" : "column", margin: '0 auto 100px auto' }}>
           {filteredList && filteredList.map((item, index) => (
-            <NFTCard nftSrc={item.src} key={index} name={item.name} index={index} onClick={() => navigate('/detail', { state: { item: item } })} />
+            <NFTCard nftSrc={item[0].imageHash} key={index} name={item[0].tokenName} price={item[0].price} owner={item[0].currentOwner} creator={item[0].mintedBy}index={index} onClick={() => navigate('/detail', { state: { item: item[0] } })} />
           ))}
         </div>
       )}
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 const CardList = ({ list, type = "horizontal" }) => {
   const [value, setValue] = React.useState('All');
   const classes = useStyles();
-
+console.log("Cardlist",list);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

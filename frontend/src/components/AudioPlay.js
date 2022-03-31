@@ -58,11 +58,12 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const AudioPlay = () => {
+const AudioPlay = ({audioSrc}) => {
   return (
       <AudioPlayer
         useStyles={useStyles}
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        // src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        src={audioSrc}
         loop={true}
       />
   );

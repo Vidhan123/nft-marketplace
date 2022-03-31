@@ -39,9 +39,9 @@ const NFTDetail2 = ({ loadWeb3, account,buyNFTFromApp }) => {
         "like":"100",
     }
 const buyNFT=()=>{
-    buyNFTFromApp(dummy.tokenID,dummy.price)
+    buyNFTFromApp(state.item.tokenId,state.item.price)
 }
-    const isARSupport = useARStatus(state.item.src);
+    // const isARSupport = useARStatus(state.item.imageHash);
 
     return (
         <Container style={{ display: 'flex', justifyContent: 'center', margin: '50px auto' }}>
@@ -57,29 +57,32 @@ const buyNFT=()=>{
                     //Detail Content
                     <Grid container spacing={4} style={{ maxHeight: '100%', padding: '20px' }} >
                         <Grid item xs={7}>
-                            {isARSupport ?
-                                <model-viewer loading="eager" camera-controls auto-rotate src={state.item.src} />
+                            {/* {isARSupport ?
+                                <model-viewer loading="eager" camera-controls auto-rotate src={state.item.imageHash} />
                                 : (
                                     <>
                                         <ColorExtractor getColors={getColors}>
-                                            <img width='100%' src={state.item.src} style={{ borderRadius: '30px' }} />
+                                            <img width='100%' src={state.item.imageHash} style={{ borderRadius: '30px' }} />
                                         </ColorExtractor>
                                     </>
                                 )
-                            }
-                            <AudioPlay id='detail-audio' />
+                            } */}
+                            <ColorExtractor getColors={getColors}>
+                                            <img width='100%' src={state.item.imageHash} style={{ borderRadius: '30px' }} />
+                                        </ColorExtractor>
+                            <AudioPlay id='detail-audio' audioSrc={state.item.audioHash} />
                         </Grid>
                         <Grid item xs={5}>
                             <div style={{ maxHeight: '100%', overflow: 'hidden' }}>
-                                <Typography variant='h4' style={{ color: 'white', fontFamily: 'cursive' }}> {dummy.Name} </Typography>
+                                <Typography variant='h4' style={{ color: 'white', fontFamily: 'cursive' }}> {state.item.tokenName} </Typography>
                                 <br />
-                                <Typography variant='body2' style={{ color: 'white' }}> {dummy.Owner} </Typography>
+                                <Typography variant='body2' style={{ color: 'white' }}> {state.item.currentOwner} </Typography>
                                 <br />
-                                <Typography variant='body1' style={{ color: 'white', margin: '20px 0 0 0', textAlign: 'start' }}>Description: {dummy.Description} </Typography>
+                                <Typography variant='body1' style={{ color: 'white', margin: '20px 0 0 0', textAlign: 'start' }}>Description: {state.item.metadata.description} </Typography>
                                 <br />
-                                <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>No. of Transfers: {dummy.Transfers} </Typography>
+                                <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>No. of Transfers: {state.item.numberOfTransfers} </Typography>
                                 <br />
-                                <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>Music Type: {dummy.Category} </Typography>
+                                <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>Music Type: {state.item.metadata.categories} </Typography>
                                 <br />
                                 <Typography variant='body1' style={{ color: 'white', textAlign: 'start' }}>No. of Plays: 6 </Typography>
                                 <br />
@@ -100,7 +103,7 @@ const buyNFT=()=>{
                                     height="50px"
                                     onClick={buyNFT}
                                     child={
-                                        <Typography variant='h6' color={Colors.buttons.primary}><FaEthereum size="20px" /> 0.3 </Typography>
+                                        <Typography variant='h6' color={Colors.buttons.primary}><FaEthereum size="20px" /> {window.web3.utils.fromWei(state.item.price.toString(),"Ether")} </Typography>
                                     }
                                 />
                                 </Grid>

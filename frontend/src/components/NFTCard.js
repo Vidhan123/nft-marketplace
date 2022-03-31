@@ -10,14 +10,14 @@ import { Colors } from "../constants/Colors";
 import { ModelViewerElement } from "@google/model-viewer";
 import { useARStatus } from "../hooks/isARStatus";
 
-const NFTCard = ({ username, name, price, nftSrc, likeCount, gradient, onClick, index }) => {
+const NFTCard = ({ nftSrc,name, price,owner,creator,  likeCount, gradient, onClick, index }) => {
   const [isLike, setIsLike] = useState(false);
   const [colors, setColors] = useState([]);
 
-  const isARSupport = useARStatus(nftSrc);
+  // const isARSupport = useARStatus(nftSrc);
 
   useEffect(() => {
-    console.log(isARSupport);
+    // console.log(isARSupport);
   }, [])
 
   const like = () => setIsLike(!isLike);
@@ -27,20 +27,25 @@ const NFTCard = ({ username, name, price, nftSrc, likeCount, gradient, onClick, 
     //console.log(colors);
   }
 
-  const names = ["Unnamed", "Priyansh Mehta", "Unnamed", "Varun Mehta"];
-  const prices = [1.2, 1, 4.5, 0.3];
-
+  // const names = ["Unnamed", "Priyansh Mehta", "Unnamed", "Varun Mehta"];
+  // const prices = [1.2, 1, 4.5, 0.3];
+  // const weiP= window.web3.utils.fromWei(price.toString(), "ether")
+console.log("weiP",price)
   return (
     <Card
       blurColor={colors[0]}
 
       child={<>
-        {isARSupport ? <model-viewer ar-scale="auto" ar ar-modes="webxr scene-viewer quick-look" id="reveal" loading="eager" camera-controls auto-rotate src={nftSrc} > </model-viewer> : <><ColorExtractor getColors={getColors}>
+        {/* {isARSupport ? <model-viewer ar-scale="auto" ar ar-modes="webxr scene-viewer quick-look" id="reveal" loading="eager" camera-controls auto-rotate src={nftSrc} > </model-viewer> : <>
+        <ColorExtractor getColors={getColors}>
           <img className="nft-image" src={nftSrc} alt={"nft-img"} />
-        </ColorExtractor></>}
+        </ColorExtractor></>} */}
+        <ColorExtractor getColors={getColors}>
+          <img className="nft-image" src={nftSrc} alt={"nft-img"} />
+        </ColorExtractor>
         <div className="wrapper">
           <div className="info-container">
-            <p className="owner"> {names[index]}</p>
+            <p className="owner">  {owner.substring(0, 4) + '...' + owner.substring(owner.length - 3, owner.length) }</p>
             <p className="name">{name}</p>
           </div>
 
@@ -48,7 +53,9 @@ const NFTCard = ({ username, name, price, nftSrc, likeCount, gradient, onClick, 
             <p className="price-label">Price</p>
             <p className="price">
               {" "}
-              <FaEthereum /> {prices[index]}
+              <FaEthereum /> 
+              {window.web3.utils.fromWei(price.toString(), "ether")}
+              
             </p>
           </div>
         </div>

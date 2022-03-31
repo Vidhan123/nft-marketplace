@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import Search from "../components/Search";
 
 const Explore2 = ({ loadWeb3, account,allNFTS }) => {
-  console.log("allNFTS",allNFTS);
+  console.log("allNFTS from explore",allNFTS);
   return (
     <div id="explore">
       <Header 
@@ -16,7 +16,7 @@ const Explore2 = ({ loadWeb3, account,allNFTS }) => {
       <Search/>
       <p id="card-list-header-text" style={{ textAlign: 'center' }} > Explore By Genres </p>
       <div id="list-container">
-        <CardList2 list={exploreList} />
+        {allNFTS&&allNFTS.length!==0?(<CardList2 list={allNFTS} />):null}
       </div>
     </div>
   );

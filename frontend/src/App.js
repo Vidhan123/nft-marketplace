@@ -133,7 +133,10 @@ const loadAllNFTs=async()=>{
   }
 
   const buyNFTFromApp = async (tokenID, price) => {
-    const res2 = await buyNFT(musicNFT, tokenID, price, account)
+    console.log(tokenID,price)
+    const newTokenPrice = window.web3.utils.fromWei(price, "Ether");
+    console.log(newTokenPrice)
+    const res2 = await buyNFT(musicNFT, tokenID, newTokenPrice, account)
     if (res2 == "confirmed") {
       console.log("price changed")
     }
@@ -176,6 +179,7 @@ console.log("allUsers",allUsers)
             <NFTDetail 
               loadWeb3={fetchAccount}
               account={account}
+              buyNFTFromApp={buyNFTFromApp}
             />
           } />
           <Route path="/profile" element={

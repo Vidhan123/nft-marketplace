@@ -10,7 +10,7 @@ import { FaEthereum } from "react-icons/fa";
 import { AiOutlineHeart, AiFillHeart, AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { useMobile } from "../hooks/isMobile";
 import { hotDropsData } from "../constants/MockupData";
-import { useARStatus } from "../hooks/isARStatus";
+// import { useARStatus } from "../hooks/isARStatus";
 
 const NFTDetail = ({ loadWeb3, account,buyNFTFromApp }) => {
   const isMobile = useMobile();
@@ -33,7 +33,7 @@ const NFTDetail = ({ loadWeb3, account,buyNFTFromApp }) => {
     setColors([]);
   }, [state]);
 
-  const isARSupport = useARStatus(state.item.src);
+  // const isARSupport = useARStatus(state.item.imageHash);
   const dummy = {
     "Name": "Ta Ta Thaiya",
     "Owner": "Rishi Lakhani",
@@ -59,12 +59,12 @@ const NFTDetail = ({ loadWeb3, account,buyNFTFromApp }) => {
           child={
             //Detail Content
             <div id="detail-content">
-             {isARSupport ? <model-viewer ar-scale="auto" ar ar-modes="webxr scene-viewer quick-look" id="arDetail" loading="eager" camera-controls auto-rotate src={state.item.src} > </model-viewer> 
+             {/* {isARSupport ? <model-viewer ar-scale="auto" ar ar-modes="webxr scene-viewer quick-look" id="arDetail" loading="eager" camera-controls auto-rotate src={state.item.imageHash} > </model-viewer> 
              : <> <ColorExtractor getColors={getColors}>
-                {/* <img id="detail-image" src={state.item.src} /> */}
-                {/* <img id="detail-image" src={dummy.src} /> */}
-              </ColorExtractor></>}
-
+                <img id="detail-image" src={state.item.src} />
+                <img id="detail-image" src={dummy.src} />
+              </ColorExtractor></>} */}
+              <img id="detail-image" src={state.item.src} />
               <div id="detail-info" style={{}}>
                 {/* <div id='detail-info-container'>
                   <p id="collection"> {state.item.name} </p>
@@ -73,9 +73,9 @@ const NFTDetail = ({ loadWeb3, account,buyNFTFromApp }) => {
 
                 </div> */}
                 <div id='detail-info-container'>
-                  <p id="collection"> {dummy.name} </p>
-                  <p id="name"> {dummy.name} </p>
-                  <p id="description" > {dummy.description} </p>
+                  <p id="collection"> {state.item.tokenName} </p>
+                  <p id="name"> {state.item.tokenName} </p>
+                  <p id="description" > {state.item.metadata.description} </p>
 
                 </div>
 
@@ -83,11 +83,11 @@ const NFTDetail = ({ loadWeb3, account,buyNFTFromApp }) => {
                   <Button
                     width={isMobile ? "70%" : "70%"}
                     height="50px"
-                    onClick={buyNFTFromApp(dummy.tokenID,dummy.price)}
+                    onClick={buyNFTFromApp(state.item.tokenId,state.item.price)}
                     child={
                       <div id="button-child">
                         <FaEthereum size="28px" />
-                        <p id="price">0.3</p>
+                        <p id="price">{window.web3.utils.fromWei(state.item.price.toString(),"Ether")}</p>
                       </div>
                     }
                   ></Button>
