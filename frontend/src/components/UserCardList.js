@@ -15,11 +15,11 @@ function TabPanel(props) {
     const { account, data, value, index, type, ...other } = props;
     let navigate = useNavigate();
 
-    let filteredList = index !== 'Activities' && (
-        data.filter((item) => {
-            return item.Ownership === index
-        })
-    )
+    // let filteredList = index !== 'Activities' && (
+    //     data.filter((item) => {
+    //         return item.Ownership === index
+    //     })
+    // )
 
     return (
         <div
@@ -33,8 +33,8 @@ function TabPanel(props) {
                 value === index && (
                     <>
                         <div id="card-list" style={{ flexDirection: type === "horizontal" ? "row" : "column", margin: '0 auto' }}>
-                            {filteredList.map((item, index) => (
-                                <NFTCard nftSrc={item.src} key={index} onClick={() => navigate('/detail', { state: { item: item } })} />
+                            {data.map((item, index) => (
+                                <NFTCard nftSrc={item[0].imageHash} key={index} name={item[0].tokenName} price={item[0].price} owner={item[0].currentOwner} creator={item[0].mintedBy}index={index} onClick={() => navigate('/detail', { state: { item: item[0] }})} />
                             ))}
                         </div>
                         <br />
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const UserCardList = ({ account, list, type = "horizontal" }) => {
+const UserCardList = ({ account, list, type = "horizontal",userMinted }) => {
     const [value, setValue] = React.useState('Collected');
     const classes = useStyles();
 
@@ -132,7 +132,7 @@ const UserCardList = ({ account, list, type = "horizontal" }) => {
                 </Tabs>
             </AppBar>
             {tags.map((item, index) => (
-                <TabPanel value={value} key={index} index={item} data={dummy} type={type} account={account} />
+                <TabPanel value={value} key={index} index={item} data={userMinted} type={type} account={account} />
             ))}
         </div>
     );

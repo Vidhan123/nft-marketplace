@@ -186,6 +186,8 @@ console.log("allUsers",allUsers)
             <UserPage 
               loadWeb3={fetchAccount}
               account={account}
+              user={user}
+              allNFTS={allNfts}
             />
           } />
           {/* <Route path="/stats" element={<Stats />} /> */}
