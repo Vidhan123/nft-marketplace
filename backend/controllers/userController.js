@@ -17,7 +17,7 @@ exports.updateUser = async (req, res) => {
 
 exports.getUser = async (req, res) => {
 	const { walletAddress } = req.params;
-	console.log("user",req.params)
+	console.log("user wallerAddress",req.params)
 	const user = await User.findOne({ walletAddress: walletAddress }).populate(
 		'followers following'
 	);

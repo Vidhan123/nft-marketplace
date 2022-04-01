@@ -193,6 +193,7 @@ console.log("allUsers",allUsers)
             <Home
               loadWeb3={fetchAccount}
               account={account}
+              allNFTS={allNfts}
             />
             // <CreateUser createUserFromApp={createUserFromApp}/>
           } />

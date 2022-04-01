@@ -1,10 +1,10 @@
 import React from "react";
 import Hero from "../components/Hero";
 import "../styles/Home.css";
-import CardList from "../components/CardList";
+import CardList from "../components/CardList2";
 import { hotDropsData } from "../constants/MockupData";
 
-const Home = ({ loadWeb3, account }) => {
+const Home = ({ loadWeb3, account,allNFTS }) => {
 
   return (
     <div id="home">
@@ -12,7 +12,7 @@ const Home = ({ loadWeb3, account }) => {
 
       <p id="card-list-header-text"> Trending </p>
       <div id="list-container">
-        <CardList list={hotDropsData} />
+        <CardList list={allNFTS} />
       </div>
     </div>
   );

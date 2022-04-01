@@ -32,6 +32,7 @@ const NFTCard = ({ nftSrc,name, price,owner,creator,  likeCount, gradient, onCli
   // const weiP= window.web3.utils.fromWei(price.toString(), "ether")
 console.log("weiP",price)
   return (
+    <>{owner?(<>
     <Card
       blurColor={colors[0]}
 
@@ -81,7 +82,8 @@ console.log("weiP",price)
         </div>
       </>}>
 
-    </Card>
+    </Card></>):(<><p>Loading</p></>)}</>
+    
   );
 };
 
