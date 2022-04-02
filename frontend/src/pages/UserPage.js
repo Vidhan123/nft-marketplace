@@ -18,6 +18,7 @@ const UserPage = ({ loadWeb3, account,user,allNFTS }) => {
     const my_minted_tokens = tokens.filter(
       (cryptoboy) => cryptoboy.mintedBy === account
     );
+    console.log("User Here: ", user)
     return (<>
         {user?<Container style={{ margin: '50px auto' }}>
             <Header 

@@ -49,13 +49,12 @@ console.log("weiP",price)
             <p className="owner">  {owner.substring(0, 4) + '...' + owner.substring(owner.length - 3, owner.length) }</p>
             <p className="name">{name}</p>
           </div>
-
           <div className="price-container">
             <p className="price-label">Price</p>
             <p className="price">
               {" "}
               <FaEthereum /> 
-              {window.web3.utils.fromWei(price.toString(), "ether")}
+              {window.web3.utils.fromWei(price.toString().substring(0,3), "kwei")}
               
             </p>
           </div>

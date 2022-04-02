@@ -15,6 +15,7 @@ import ipfs from "./hooks/ipfs";
 import Header from "./components/Header";
 
 import UserPage from "./pages/UserPage";
+import DisplayUsers from "./pages/DisplayUsers";
 
 function App() {
 
@@ -43,8 +44,11 @@ function App() {
 
   const loadDetails = async () => {
     // User
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
+    console.log(accounts[0])
+    setAccount(accounts[0]);
     console.log("account",account);
-    const res2 = await getUser(account);
+    const res2 = await getUser(account[0]);
     setUser(res2);
   }
 
@@ -161,6 +165,7 @@ console.log("allUsers",allUsers)
               createNFTFromApp={createNFTFromApp}
             />} 
           />
+          <Route path="/users" element={<DisplayUsers />} />
           <Route path="/editProfile" element={
             <CreateUser
               loadWeb3={fetchAccount}
@@ -193,7 +198,7 @@ console.log("allUsers",allUsers)
           {/* <Route path="/stats" element={<Stats />} /> */}
           <Route path="/" element={ 
             <Home
-              loadWeb3={fetchAccount}
+              loadWeb3={loadDetails}
               account={account}
               allNFTS={allNfts}
             />

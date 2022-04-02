@@ -174,6 +174,7 @@ const Header = ({loadWeb3, account}) => {
           <Link to="/stats" style={{ textDecoration: 'none' }}>Stats</Link>
           <Link to="/create" style={{ textDecoration: 'none' }}>Create</Link>
           <Link to="/profile" style={{ textDecoration: 'none' }}>Profile</Link>
+          <Link to="/users" style={{ textDecoration: 'none' }}>Users</Link>
 
           <Button
               onClick={() => handleWallet()}
