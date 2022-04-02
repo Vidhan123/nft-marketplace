@@ -13,22 +13,25 @@ const UsersList = ({ list, type = 'horizontal' }) => {
     }
     let navigate = useNavigate();
     return (
-        <div id="card-list" style={{ flexDirection: type == "horizontal" ? "row" : "column" }}>
+        <>{list?(
+            <div id="card-list" style={{ flexDirection: type == "horizontal" ? "row" : "column" }}>
             {list.map((item, index) => (
                 <Card
                     key={index}
                     blurColor={colors[0]}
                     child={<>
                         <ColorExtractor getColors={getColors}>
-                            <img className="nft-image" src={item.src} alt={"nft-img"} />
+                            <img className="nft-image" src={item.profilePic} alt={"nft-img"} />
                         </ColorExtractor>
                         <div className="wrapper">
                             <div className="info-container">
                                 <p className="name">{item.name}</p>
                                 <p className="owner">
                                     <br />
-                                    NFTS Created: {item.nfts} <br />
-                                    Followers: {item.followers} | Following: {item.following}
+                                    NFTS Created:
+                                     {/* {item.nfts} */}
+                                      <br />
+                                    Followers: {item.followers.length} | Following: {item.following.length}
                                 </p>
                             </div>
                         </div>
@@ -39,6 +42,8 @@ const UsersList = ({ list, type = 'horizontal' }) => {
                 </Card>
             ))}
         </div>
+        ):(<><p>Loading</p></>)}</>
+       
     )
 }
 

@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import Search from "../components/Search";
 import UsersList from "../components/UsersList";
 
-const DisplayUsers = () => {
+const DisplayUsers = ({allUsers}) => {
     const users = [
         {
             name: 'Rishi',
@@ -41,9 +41,12 @@ const DisplayUsers = () => {
       <Header />
       <Search/>
       <p id="card-list-header-text" style={{ textAlign: 'center' }} > Users </p>
-      <div id="list-container">
-        <UsersList list={users} />
-      </div>
+      {allUsers?(
+         <div id="list-container">
+         <UsersList list={allUsers} />
+       </div>
+      ):(<><p>Loading</p></>)}
+     
     </div>
   );
 };

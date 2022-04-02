@@ -39,6 +39,6 @@ exports.getUser = async (req, res) => {
 exports.getAllUsers = async (req, res) => {
 	console.log("all users")
   const items = await User.find().populate('followers following');
-console.log(items)
+console.log("items",items)
   res.status(200).json(items);
 };

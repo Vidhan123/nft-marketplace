@@ -44,11 +44,8 @@ function App() {
 
   const loadDetails = async () => {
     // User
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
-    console.log(accounts[0])
-    setAccount(accounts[0]);
-    console.log("account",account);
-    const res2 = await getUser(account[0]);
+    
+    const res2 = await getUser(account);
     setUser(res2);
   }
 
@@ -108,8 +105,8 @@ const loadAllNFTs=async()=>{
 }
   useEffect(() => {
     const Load = async () => {
-      await loadAllUsers();
       await loadWeb3();
+      await loadAllUsers();
       await loadBlockchainData();
       
     }
@@ -165,7 +162,7 @@ console.log("allUsers",allUsers)
               createNFTFromApp={createNFTFromApp}
             />} 
           />
-          <Route path="/users" element={<DisplayUsers />} />
+          <Route path="/users" element={<DisplayUsers allUsers={allUsers} />} />
           <Route path="/editProfile" element={
             <CreateUser
               loadWeb3={fetchAccount}
@@ -198,7 +195,7 @@ console.log("allUsers",allUsers)
           {/* <Route path="/stats" element={<Stats />} /> */}
           <Route path="/" element={ 
             <Home
-              loadWeb3={loadDetails}
+              loadWeb3={fetchAccount}
               account={account}
               allNFTS={allNfts}
             />

@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import ipfs from "./ipfs";
 const URL = 'http://localhost:8000/api/v1'
 
 function useAPI() {
@@ -20,7 +20,7 @@ function useAPI() {
     try {
       console.log("here all")
       const res = axios.get(`${URL}/user/all`)
-      console.log(res);
+      console.log(res.data);
       return res.data;
     }
     catch(err) {
@@ -30,8 +30,11 @@ function useAPI() {
 
   const updateUser = async (walletAddress, data) => {
     try {
+      const file = await ipfs.add(data.profilePic)
+      const imageHash = `https://ipfs.infura.io/ipfs/${file.path}`;
+      data.profilePic=imageHash;
       const res = await axios.put(`${URL}/user/${walletAddress}`, data);
-    console.log(res);
+    console.log(res.data);
       return res.data;
     }
     catch(err) {

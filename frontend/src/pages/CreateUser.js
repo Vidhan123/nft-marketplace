@@ -27,7 +27,7 @@ const CreateUser = ({ createUserFromApp, loadWeb3, account }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const data = { 'profile': src, 'name': name, 'email': email, 'bio': bio,'isAdmin':false }
+        const data = { 'profilePic': src, 'name': name, 'email': email, 'bio': bio,'isAdmin':false }
         console.log(data)
         createUserFromApp(data)
     }
