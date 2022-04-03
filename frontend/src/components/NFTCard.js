@@ -10,7 +10,7 @@ import { Colors } from "../constants/Colors";
 import { ModelViewerElement } from "@google/model-viewer";
 import { useARStatus } from "../hooks/isARStatus";
 
-const NFTCard = ({ nftSrc,name, price,owner,creator,  likeCount, gradient, onClick, index }) => {
+const NFTCard = ({ nftSrc,name, price,owner,is3d,creator,  likeCount, gradient, onClick, index }) => {
   const [isLike, setIsLike] = useState(false);
   const [colors, setColors] = useState([]);
 
@@ -37,13 +37,13 @@ console.log("weiP",price)
       blurColor={colors[0]}
 
       child={<>
-        {/* {isARSupport ? <model-viewer ar-scale="auto" ar ar-modes="webxr scene-viewer quick-look" id="reveal" loading="eager" camera-controls auto-rotate src={nftSrc} > </model-viewer> : <>
+        {is3d ? <model-viewer ar-scale="auto" ar ar-modes="webxr scene-viewer quick-look" id="reveal" loading="eager" camera-controls auto-rotate src={nftSrc} > </model-viewer> : <>
         <ColorExtractor getColors={getColors}>
           <img className="nft-image" src={nftSrc} alt={"nft-img"} />
-        </ColorExtractor></>} */}
-        <ColorExtractor getColors={getColors}>
+        </ColorExtractor></>}
+        {/* <ColorExtractor getColors={getColors}>
           <img className="nft-image" src={nftSrc} alt={"nft-img"} />
-        </ColorExtractor>
+        </ColorExtractor> */}
         <div className="wrapper">
           <div className="info-container">
             <p className="owner">  {owner.substring(0, 4) + '...' + owner.substring(owner.length - 3, owner.length) }</p>
