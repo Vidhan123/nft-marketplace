@@ -56,6 +56,18 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
         reader.onloadend = () => {
             setMusic(Buffer(reader.result))
     }
+}
+    const capture3d=(event)=> {
+        event.preventDefault()
+        
+        const files = event.target.files[0]
+        const reader = new FileReader()
+        reader.readAsArrayBuffer(files)
+        reader.onloadend = () => {
+            setAud(Buffer(reader.result))
+    }
+
+}   
 // }
 //     const captureFile=(event)=> {
 //         event.preventDefault()
@@ -66,7 +78,7 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
 //         reader.onloadend = () => {
 //             setFinalBuffer(Buffer(reader.result))
 //     }
-}
+
 
     return (
         <Container style={{ display: 'flex', justifyContent: 'center', margin: '50px auto' }} >
@@ -85,6 +97,10 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
                                 onClick={() => setIs3d(!is3d)}
                                 style={{ color: 'white' }}
                             />
+                            {is3d? 
+                            <div style={{ backgroundColor: 'white', marginTop: '50px' }}>
+                                <input type="file" id="finput" onChange={capture3d} />
+                            </div>:
                             <div style={{
                                 margin: 'auto',
                                 marginTop: '20px',
@@ -120,6 +136,7 @@ const CreateNFT = ({ loadWeb3, account,createNFTFromApp }) => {
                                     </div>
                                 )}
                             </div>
+            }
                             <br/>
                             <br/>
                             <Button
