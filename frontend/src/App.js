@@ -67,6 +67,7 @@ function App() {
   }
   
   const loadAllUsers = async () => {
+    console.log("loading")
     const res2 = await getAllUsers();
     console.log("allUsers",res2)
     setAllUsers(res2);

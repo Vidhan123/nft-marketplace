@@ -18,8 +18,9 @@ function useAPI() {
 
   const getAllUsers = async () => {
     try {
-      console.log("here all")
-      const res = axios.get(`${URL}/user/users/all`)
+      console.log("here all use api")
+      const res =await axios.get(`${URL}/user/all/users`)
+      // const allUsers= Promise.then(result => result.data);
       console.log("all use api",res.data);
       return res.data;
     }

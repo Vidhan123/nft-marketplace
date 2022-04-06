@@ -11,6 +11,6 @@ const userRouter = express.Router();
 
 userRouter.put('/:walletAddress', asyncHandler(updateUser));
 userRouter.get('/:walletAddress', asyncHandler(getUser));
-userRouter.get('/users/all', asyncHandler(getAllUsers));
+userRouter.get('/all/users', asyncHandler(getAllUsers));
 
 module.exports = userRouter;

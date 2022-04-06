@@ -57,7 +57,7 @@ const buyNFT=()=>{
                     //Detail Content
                     <Grid container spacing={4} style={{ maxHeight: '100%', padding: '20px' }} >
                         <Grid item xs={7}>
-                            {/* {isARSupport ?
+                            {state.item.is3d ?
                                 <model-viewer loading="eager" camera-controls auto-rotate src={state.item.imageHash} />
                                 : (
                                     <>
@@ -66,10 +66,10 @@ const buyNFT=()=>{
                                         </ColorExtractor>
                                     </>
                                 )
-                            } */}
-                            <ColorExtractor getColors={getColors}>
+                            }
+                            {/* <ColorExtractor getColors={getColors}>
                                             <img width='100%' src={state.item.imageHash} style={{ borderRadius: '30px' }} />
-                                        </ColorExtractor>
+                                        </ColorExtractor> */}
                             <AudioPlay id='detail-audio' audioSrc={state.item.audioHash} />
                         </Grid>
                         <Grid item xs={5}>

@@ -33,8 +33,8 @@ const CreateUser = ({ createUserFromApp, loadWeb3, account }) => {
     }
 
     const apply = (file) => {
-        var src = window.URL.createObjectURL(file);
-        setSrc(src);
+        //  var src = window.URL.createObjectURL(file);
+        setSrc(file);
         setClickedChange(false)
     }
 
