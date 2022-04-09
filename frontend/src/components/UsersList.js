@@ -36,7 +36,7 @@ const UsersList = ({ list, type = 'horizontal' }) => {
                             </div>
                         </div>
                         <div className="buttons">
-                            <Button color={Colors.buttons.primary} width='100%' fontSize='15px' height='35px' textContent="View Profile" onClick={() => navigate('/users')} />
+                            <Button color={Colors.buttons.primary} width='100%' fontSize='15px' height='35px' textContent="View Profile" onClick={() => navigate('/user', { state: { item: item } })} />
                         </div>
                     </>}>
                 </Card>

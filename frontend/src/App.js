@@ -16,6 +16,7 @@ import Header from "./components/Header";
 
 import UserPage from "./pages/UserPage";
 import DisplayUsers from "./pages/DisplayUsers";
+import Profile from "./pages/Profile";
 
 function App() {
 
@@ -180,6 +181,13 @@ console.log("allUsers",allUsers)
           } />
           <Route path="/detail" element={
             <NFTDetail 
+              loadWeb3={fetchAccount}
+              account={account}
+              buyNFTFromApp={buyNFTFromApp}
+            />
+          } />
+          <Route path="/user" element={
+            <Profile 
               loadWeb3={fetchAccount}
               account={account}
               buyNFTFromApp={buyNFTFromApp}
